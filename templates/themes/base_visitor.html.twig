@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {# Le titre de chaque page dans l'onglet #}
-    <title>{% block title %}{% endblock %}-Golden Roger Pizzeria</title>
+    <title>{% block title %}{% endblock %}-Gold Roger Pizzeria</title>
 
     {# La description de chaque page #}
     <meta name="description" content= "{% block description %}{% endblock %}">
@@ -72,14 +72,26 @@
 
             </div>
         </div>
-        
-        <a href="#" class="login-button">Inscription</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                    aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-
-        <a href="#" class="login-button">Login</a>
+        {# DA RIVEDERE, PROBLEMA COL RESPONSIVO #}
+        <ul class="navbar-nav ms-auto"> 
+            {% if app.user %}
+                <li class>
+                    <a href="{{path('app_logout')}}" class="login-button">Déconnexion</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{{path('visitor_registration_register')}}" class="login-button">Inscription</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                        aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        </button>
+                </li>
+                <li>
+                    <a href="{{path('visitor_authentication_login')}}" class="login-button">Login</a>
+                </li>   
+            {% endif %}
+            
+        </ul>
     </nav>
 
     {# Le contenu specifique à chaque page #}

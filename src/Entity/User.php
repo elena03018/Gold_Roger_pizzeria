@@ -4,11 +4,16 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[UniqueEntity(fields: ['email'], message: 'Cet email existe déjà')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -16,42 +21,113 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    //Prénom
+    #[Assert\NotBlank(message: "Le prénom est obligatoire.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Votre prénom ne doit pas dépasser {{ limit }} caractères.',
+    )]
+    #[Assert\Regex(
+        pattern: "/^[0-9a-zA-Z-_' áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]+$/i",
+        match: true,
+        message: 'Seuls les chiffres, les lettres, l\' underscore et tiret sont autorisés.',
+    )]
     #[ORM\Column(length: 255)]
     private ?string $firstName = null;
 
+    //Nom
+    #[Assert\NotBlank(message: "Le nom est obligatoire.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Votre nom ne doit pas dépasser {{ limit }} caractères.',
+    )]
+    #[Assert\Regex(
+        pattern: "/^[0-9a-zA-Z-_' áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ]+$/i",
+        match: true,
+        message: 'Seuls les chiffres, les lettres, l\' underscore et tiret sont autorisés.',
+    )]
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
 
+
+    //Email
+    #[Assert\NotBlank(message: "L'email est obligatoire.")]
+    #[Assert\Length(
+        max: 180,
+        maxMessage: 'L\'email ne doit pas dépasser {{ limit }} caractères.',
+    )]
+    #[Assert\Email(
+        message: 'L\' email {{ value }} est invalide.',
+    )]
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
+    //Phone
+    #[Assert\NotBlank(message: "Le numéro de téléphone est obligatoire.")]
+    #[Assert\Length(
+        min: 6,
+        max: 55,
+        minMessage: 'Le numéro de téléphone doit contenir au minimum {{ limit }} caractères.',
+        maxMessage: 'Le numéro de téléphone doit contenir au maximum {{ limit }} caractères.',
+    )]
+    #[Assert\Regex(
+        pattern: '/^[0-9\s\-\+\(\)]{7,20}+$/',
+        match: true,
+        message: 'Le numéro de téléphone est invalide.'
+    )]
     #[ORM\Column(length: 255, unique: true)]
     private ?string $phone = null;
 
 
+    //Roles
     /**
      * @var list<string> The user roles
      */
     #[ORM\Column]
     private array $roles = [];
 
+    //Password
     /**
      * @var string The hashed password
      */
+    #[Assert\NotBlank(message: "Le mot de passe est obligatoire.")]
+    #[Assert\Length(
+    min: 12,
+    max: 255,
+    minMessage: 'Le mot de passe doit contenir au minimum {{ limit }} caractères',
+    maxMessage: 'Le mot de passe doit contenir au minimum {{ limit }} caractères',
+    )]
+    #[Assert\Regex(
+        pattern: "/^(?=.*[a-zà-ÿ])(?=.*[A-ZÀ-Ỳ])(?=.*[0-9])(?=.*[^a-zà-ÿA-ZÀ-Ỳ0-9]).{11,255}$/",
+        match: true,
+        message: "Le mot de passe doit contentir au moins une lettre miniscule, majuscule, un chiffre et un caractère spécial.",
+    )]
+    #[Assert\NotCompromisedPassword(
+        message: "Ce mot de passe est facilement piratable, veuillez en choisir un autre.",
+    )]
     #[ORM\Column]
     private ?string $password = null;
 
-    
 
+    
+    
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $verifiedAt = null;
 
+    
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\Column]
+    private bool $isVerified = false;
+
+    public function __construct()
+    {
+        $this->roles[] = "ROLE_USER";
+    }
 
     public function getId(): ?int
     {
@@ -159,9 +235,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(?\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
+
+    
 
     public function getVerifiedAt(): ?\DateTimeImmutable
     {
@@ -183,9 +260,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
+
 
     public function getPhone(): ?string
     {
@@ -195,6 +272,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhone(string $phone): static
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

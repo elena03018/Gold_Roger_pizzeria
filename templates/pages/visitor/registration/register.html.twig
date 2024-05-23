@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+{# L'encodage des caractères #}
+<meta charset="UTF-8">
+
+{# Minimum de responsive design #}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{# Le titre de chaque page dans l'onglet #}
+<title>Inscription - Gold Roger Pizzeria</title>
+
+{# La description de chaque page #}
+<meta name="description" content= "Inscrivez-vous!">
+
+{# SEO #}
+<meta name="robots" content="index, follow">
+
+<meta name="author" content="Elena Bellu">
+<meta name="publisher" content="pizzeria">
+<meta name="keywords" content="Gold Roger, pizzeria, pizza artisanale, meilleure pizza, ingrédients frais, pizzeria près de chez moi">
+
+{# Favicon #}
+<link rel="apple-touch-icon" sizes="180x180" href="{{asset('apple-touch-icon.png')}}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{asset('favicon-32x32.png')}}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{asset('favicon-16x16.png')}}">
+<link rel="manifest" href="{{asset('site.webmanifest')}}">
+<link rel="mask-icon" href="{{asset('safari-pinned-tab.svg')}}" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+{# Google Font #}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+{# La feuille de style de Bootstrap 5 #}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+{# Ma feuille de style #}
+<link rel="stylesheet" href="{{asset('css/app.css')}}">
+</head>
+<body class="h-100">
+
+<main class="container my-5">
+    <div class="row">
+        <div class="col-lg-7  text-center">
+            <img src="{{asset('images/visitor/registration/pizza-inscription.png')}}" class="img-fluid">
+        </div>
+        <div class="col-lg-5 flex-column d-flex justify-content-center align-items-center">
+
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
+
+
+            {{form_start(registrationForm)}}
+            <div class="row">
+                <div class="col-lg-6 mb-3">
+                    <label for="registration_form_firstName">Prénom</label>
+                    <div class="text-danger">{{form_errors(registrationForm.firstName)}}</div>
+                    {{form_widget(registrationForm.firstName, {'attr': {'class':'form-control', 'autofocus':'autofocus'}})}}
+                </div>
+            
+                <div class="col-lg-6">
+                    <label for="registration_form_lastName">Nom</label>
+                    <div class="text-danger">{{form_errors(registrationForm.lastName)}}</div>
+                    {{form_widget(registrationForm.lastName, {'attr': {'class':'form-control'}})}}
+                </div>
+            </div>
+
+                <div class="mb-3">
+                        <label for="registration_form_email">Email</label>
+                        <div class="text-danger">{{form_errors(registrationForm.email)}}</div>
+                        {{form_widget(registrationForm.email, {'attr': {'class':'form-control'}})}}
+                </div>
+                <div class="mb-3">
+                        <label for="registration_phone">Phone</label>
+                        <div class="text-danger">{{form_errors(registrationForm.phone)}}</div>
+                        {{form_widget(registrationForm.phone, {'attr': {'class':'form-control'}})}}
+                </div>
+                <div class="mb-3">
+                        <label for="registration_form_password_first">Mot de passe</label>
+                        <div class="text-danger">{{form_errors(registrationForm.password.first)}}</div>
+                        {{form_widget(registrationForm.password.first, {'attr': {'class':'form-control', 'placeholder': "au moins 12 caractères"}})}}
+                        <small>Le mot de passe doit contenir au moins 12 caractères</small>
+                </div>
+                <div class="mb-3">
+                        <label for="registration_form_password_second">Confirmation du mot de passe</label>
+                        <div class="text-danger">{{form_errors(registrationForm.password.second)}}</div>
+                        {{form_widget(registrationForm.password.second, {'attr': {'class':'form-control'}})}}
+                </div>
+                <div class="mb-3">
+                    <label for="registration_agreeTerms">
+                        {{form_widget(registrationForm.agreeTerms)}}
+                        Lire et accepter <a href="#" data-bs-toggle="modal" data-bs-target="#agreeTermsModal">les conditions générales d'utilisation</a>
+                    </label>
+                    
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="#agreeTermsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Les conditions générales d'utilisation</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque praesentium dolor autem, dignissimos recusandae optio nisi temporibus, asperiores fugiat quam ut qui et quod necessitatibus nam vero inventore suscipit cum!
+                                lorem
+                                </p>
+                                <p>
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet, eos modi! Iusto reprehenderit repudiandae neque provident consequatur repellat veniam voluptates officia vero. Quas nulla iusto, asperiores at quos adipisci sint!
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, quam. Fuga distinctio a tenetur at obcaecati deserunt temporibus, assumenda, voluptate deleniti maiores repellat laborum sint, sit ad explicabo nulla et!
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti molestiae, aut nemo ea recusandae veniam quas odit aliquid ad provident delectus ipsum vitae corporis sit quo esse quidem molestias tempore?
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                </div>
+                <div>
+                    <input formnovalidate type="submit" class="w-100 btn btn-warning shadow" value="S'inscrire">
+                </div>
+            {{form_end(registrationForm)}}
+
+            <div class="text-center mt-3">
+            <p>Vous avez déjà un compte? <a href="{{path('visitor_authentication_login')}}">Connectez-vous</p>
+            <p><a href="{{path('visitor_welcome_index')}}">Retour à l'accueil</a></p>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{# Le script de Bootstrap 5 #}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
