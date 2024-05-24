@@ -1,0 +1,14 @@
+{% extends 'themes/base_visitor.html.twig' %}
+
+{% block title %}Email de réinitialisation du mot de passe envoyé{% endblock %}
+
+{% block description %}Email de réinitialisation du mot de passe envoyé{% endblock %}
+
+{% block main %}
+<main>
+ <p>
+       Si un compte correspondant à votre email existe, un email vient d'être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+    </p>
+    <p>Si vous ne recevez pas d'email, veuillez vérifier votre dossier de spam ou <a href="{{ path('visitor_authentication_forgot_password_request') }}">réessayer.</a>.</p>
+</main>
+{% endblock %}
