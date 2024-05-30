@@ -21,15 +21,92 @@
 
 .navbar{
     background-color: #f6cf51;
-    height: 100px;
+    /* height: 100px; */
     margin: 20px;
     padding: 0.5rem;
     border-radius: 30px;
     margin-top: 10px;  
 }
 
+
+/* Main-page d'accueil */
+.page{
+    background-image: url(../images/foto-homepage.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 !important;
+    background-position: 20%;
+}
+
+.reserveztable{
+    background-color: rgba(228, 215, 226, 0.5);
+}
+
+
+@media(max-width:768px){
+    .page{
+        background-position-x: -22rem;
+    }
+}
+
+
+
+
+/* Carousel */
+
+/* @media(max-width:768px) {
+    .carousel-big{
+        display: none;
+    }
+    .carousel-medium{
+        display: none;
+    }    
+}
+
+@media(min-width:769px) and (max-width: 900px) {
+    .carousel-big{
+        display: none;
+    }
+    .carousel-little{
+        display: none;
+    }   
+}
+
+@media(min-width:901px) {
+    .carousel-little{
+        display: none;
+    }
+    .carousel-medium{
+        display: none;
+    }   
+}
+
+@media(max-width:768px){
+    .footer-prova {
+        display:block;
+        text-align: center;
+    }
+    .footer-prova div {
+        padding-left: 0;
+        padding-right: 0;
+    }
+} */
+
 /* Footer Style */
 
+
+/* Menu */
+
+.main-menu{
+    background-color: #ffffff;
+}
+
+/* Contact */
+
+.goldroger-visitor-header
+{
+    clip-path: ellipse(42% 29% at 50% 50%);
+}
 
 
 
