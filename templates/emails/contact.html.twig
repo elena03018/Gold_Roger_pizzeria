@@ -2,6 +2,14 @@
 
 <p>Vous avez reçu un message de <strong>{{contact_first_name}} {{contact_last_name}}</strong>provenant de votre site Gold Roger Pizzeria</p>
 
+
+
+{% if user is null %}
+        <p>{{ 'Ce contact est un simple visiteur'}}</p>
+    {% else %}
+        <p>{{ user ? 'Ce contact est l\' un de vos utilisateurs' }}</p>
+{% endif %}
+
 <p>Voici ses cordonnées : </p>
 <ul>
     <li><strong>Email</strong> : {{contact_email}}</li>
@@ -17,4 +25,4 @@
 <p><u>Voici le message</u> : </p>
 <p>{{contact_message|nl2br}}</p>
 
-<p>Ciao ciao &#x1F60E;</p>
+<p>Ciao ciao pirata! &#x1F60E;</p>
