@@ -24,6 +24,10 @@ class ContactController extends AbstractController
     {
         $contact = new Contact();
 
+        $settings = $settingRepository->findAll();
+        $setting = $settings[0];
+
+
         $form = $this->createForm(ContactFormType::class, $contact);
 
         $form->handleRequest($request);
@@ -71,7 +75,7 @@ class ContactController extends AbstractController
 
         return $this->render('pages/visitor/contact/create.html.twig', [
             "form" => $form->createView(),
-            "setting" => $settingRepository->findAll(1)
+            "setting" => $setting
 
         ]);
     }

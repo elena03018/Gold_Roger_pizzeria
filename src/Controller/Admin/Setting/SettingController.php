@@ -32,7 +32,7 @@ class SettingController extends AbstractController
 
         $form->handleRequest($request);
 
-        if( $form->isSubmitted() && $form->isValid)
+        if( $form->isSubmitted() && $form->isValid())
         {
             $em->persist($setting);
             $em->flush();
