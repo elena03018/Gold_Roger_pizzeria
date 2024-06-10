@@ -30,8 +30,8 @@
                     <td>{{setting.email}}</td>
                     <td>{{setting.phone}}</td>
                     <td>{{setting.address}}</td>
-                    <td>{{setting.createdAt|format_date()}}</td>
-                    <td>{{setting.updatedAt|format_date()}}</td>
+                    <td>{{setting.createdAt|format_datetime()}}</td>
+                    <td>{{setting.updatedAt|format_datetime()}}</td>
                     <td>
                         <a class="mx-2 text-secondary" href="{{path('admin_setting_edit', {'id' :setting.id})}}"><i class="fas fa-edit"></i></a>
                             
