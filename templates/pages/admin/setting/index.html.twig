@@ -1,0 +1,44 @@
+{% extends 'themes/base_admin.html.twig' %}
+
+{% block title %}Les paramètres du site{% endblock %}
+
+{% block description %}Les paramètres du site{% endblock %}
+
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Les paramètres du site</h1>
+
+    {% include 'components/alert.html.twig' %}
+
+
+    <div class="table-responsive">
+        <table id="myTable" class="table table-striped table-hover table-bordered text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Créé le</th>
+                    <th>Modifié le</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            
+                <tr>
+                    <td>{{setting.email}}</td>
+                    <td>{{setting.phone}}</td>
+                    <td>{{setting.address}}</td>
+                    <td>{{setting.createdAt|format_date()}}</td>
+                    <td>{{setting.updatedAt|format_date()}}</td>
+                    <td>
+                        <a class="mx-2 text-secondary" href="{{path('admin_setting_edit', {'id' :setting.id})}}"><i class="fas fa-edit"></i></a>
+                            
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

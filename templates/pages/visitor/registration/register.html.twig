@@ -46,7 +46,7 @@
 <main class="container my-5">
     <div class="row">
         <div class="col-lg-7  text-center">
-            <img src="{{asset('images/visitor/registration/pizza-inscription.png')}}" class="img-fluid">
+            <img src="{{asset('images/visitor/registration/Iscrizione-foto.jpg')}}" class="img-fluid">
         </div>
         <div class="col-lg-5 flex-column d-flex justify-content-center align-items-center">
 
@@ -92,56 +92,53 @@
                         {{form_widget(registrationForm.password.second, {'attr': {'class':'form-control'}})}}
                 </div>
                 <div class="mb-3">
-                    <label for="registration_agreeTerms">
-                        {{form_widget(registrationForm.agreeTerms)}}
-                        Lire et accepter <a href="#" data-bs-toggle="modal" data-bs-target="#agreeTermsModal">les conditions générales d'utilisation</a>
-                    </label>
+                            {{form_widget(registrationForm.agreeTerms)}} 
+                            <label for="registration_form_agreeTerms">
+                                Lire et accepter 
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">les conditions générales d'utilisation</a>
+                            </label>
                     
 
                         <!-- Modal -->
-                        <div class="modal fade" id="#agreeTermsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Les conditions générales d'utilisation</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque praesentium dolor autem, dignissimos recusandae optio nisi temporibus, asperiores fugiat quam ut qui et quod necessitatibus nam vero inventore suscipit cum!
-                                lorem
-                                </p>
-                                <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet, eos modi! Iusto reprehenderit repudiandae neque provident consequatur repellat veniam voluptates officia vero. Quas nulla iusto, asperiores at quos adipisci sint!
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, quam. Fuga distinctio a tenetur at obcaecati deserunt temporibus, assumenda, voluptate deleniti maiores repellat laborum sint, sit ad explicabo nulla et!
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti molestiae, aut nemo ea recusandae veniam quas odit aliquid ad provident delectus ipsum vitae corporis sit quo esse quidem molestias tempore?
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                            
-                            </div>
+                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h2 class="modal-title fs-5" id="exampleModalLabel">Les conditions générales d'utilisation</h2>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque rerum maxime illo quia aspernatur quisquam omnis, voluptatum dolore a est!</p>
+                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque rerum maxime illo quia aspernatur quisquam omnis, voluptatum dolore a est!</p>
+                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque rerum maxime illo quia aspernatur quisquam omnis, voluptatum dolore a est!</p>
+                                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque rerum maxime illo quia aspernatur quisquam omnis, voluptatum dolore a est!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque rerum maxime illo quia aspernatur quisquam omnis, voluptatum dolore a est! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint nam ex soluta esse at quibusdam ipsa, magni assumenda quae consectetur modi pariatur eligendi dolore minus vitae est nihil excepturi amet!</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="mb-3">
+                            <input formnovalidate type="submit" class="btn btn-warning shadow w-100" value="S'inscrire">
                         </div>
-                </div>
-                <div>
-                    <input formnovalidate type="submit" class="w-100 btn btn-warning shadow" value="S'inscrire">
-                </div>
-            {{form_end(registrationForm)}}
+                    {{form_end(registrationForm)}}
 
-            <div class="text-center mt-3">
-            <p>Vous avez déjà un compte? <a href="{{path('visitor_authentication_login')}}">Connectez-vous</p>
-            <p><a href="{{path('visitor_welcome_index')}}">Retour à l'accueil</a></p>
+                    <div class="my-3 text-center">
+                        <p>
+                            Vous avez déjà un compte? 
+                            <a href="{{path('visitor_authentication_login')}}">Connectez-vous</a>
+                        </p>
+                        <p>
+                            <a href="{{path('visitor_welcome_index')}}">Retour à l'accueil</a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</main>
-
-
-{# Le script de Bootstrap 5 #}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
+        
+        {# Js part of Bootstrap 5 #}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </body>
 </html>
-
-
