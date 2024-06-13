@@ -26,7 +26,8 @@ class SettingFixtures extends Fixture
 
         $setting->setEmail("goldrogerpizzeria@gmail.com");
         $setting->setPhone("06 01 01 01 01");
-        $setting->setAddress("via Cavour 1");
+        $setting->setAddress("via Cavour 1, 09016 Iglesias, Italie");
+        //$setting->setUser(null);
 
         return $setting;
     }

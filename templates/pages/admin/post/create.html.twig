@@ -1,0 +1,48 @@
+{% extends 'themes/base_admin.html.twig' %}
+
+{% block title %}Nouvelle pizza{% endblock %}
+
+{% block description %}Nouvelle pizza{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Nouvelle pizza</h1>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                {{ form_start(form) }}
+                    <div class="mb-3">
+                        <label for="post_form_title">Titre</label>
+                        <div class="text-danger">{{form_errors(form.title)}}</div>
+                        {{ form_widget(form.title, {"attr": {"class": "form-control", "autofocus":"autofocus"}}) }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="post_form_category">Catégorie</label>
+                        <div class="text-danger">{{form_errors(form.category)}}</div>
+                        {{ form_widget(form.category, {"attr": {"class": "form-control"}}) }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="post_form_ingredients">Ingrédients</label>
+                        <div class="text-danger">{{form_errors(form.ingredients)}}</div>
+                        {{ form_widget(form.ingredients, {"attr": {"class": "form-control"}}) }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="post_form_price">Prix</label>
+                        <div class="text-danger">{{form_errors(form.price)}}</div>
+                        {{ form_widget(form.price, {"attr": {"class": "form-control"}}) }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="post_form_imageFile_file">Image</label>
+                        <div class="text-danger">{{form_errors(form.imageFile)}}</div>
+                        {{ form_widget(form.imageFile, {"attr": {"class": "form-control"}}) }}
+                    </div>
+
+                    <div>
+                        <input formnovalidate type="submit" class="btn btn-primary shadow" value="Sauvegarder">
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

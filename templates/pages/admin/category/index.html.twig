@@ -60,7 +60,7 @@
                         <a href="{{path('admin_category_edit', {'id':category.id})}}" class="btn btn-sm btn-secondary">Modifier</a>
                             <form class="d-inline" action="{{path('admin_category_delete', {'id':category.id})}}" method="post">
                                 <input type="hidden" name="_csrf_token" value="{{csrf_token('delete_category_'~category.id)}}">
-                                <input onclick="return confirm('En supprimant cette catégorie, vous supprimez également tous les articles qui lui sont associés. Vous confirmez?')" type="submit" class="btn btn-sm btn-danger" value="Supprimer">
+                                <input onclick="return confirm('En supprimant cette catégorie, vous supprimez également tous les objets qui lui sont associés. Vous confirmez?')" type="submit" class="btn btn-sm btn-danger" value="Supprimer">
                             </form>
                     </td>
                 </tr>
