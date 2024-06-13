@@ -37,6 +37,7 @@ class CategoryController extends AbstractController
     #[Route('/category/create', name: 'admin_category_create', methods: ['GET', 'POST'])]
     public function create(Request $request): Response
     {
+
         $category = new Category();
 
         $form = $this->createForm(CategoryFormType::class, $category);
@@ -92,7 +93,7 @@ class CategoryController extends AbstractController
     {
         if ( $this->isCsrfTokenValid('delete_category_'.$category->getId(), $request->request->get('_csrf_token')) ) 
         {
-            $this->addFlash('success', "La catégorie {$category->getName()} a été supprimée");
+            $this->addFlash('success', "La catégorie {$category->getName()} et tous ses objets associés ont été supprimés");
 
             $this->em->remove($category);
             $this->em->flush();
