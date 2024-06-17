@@ -1,8 +1,8 @@
 {% extends 'themes/base_admin.html.twig' %}
 
-{% block title %}Liste de pizzas{% endblock %}
+{% block title %}Liste des pizzas{% endblock %}
 
-{% block description %}Liste de pizzas{% endblock %}
+{% block description %}Liste des pizzas{% endblock %}
 
 {# JQuery #}
 {% block jQuery %}
@@ -59,7 +59,7 @@
                     <td>{{post.category.name}}</td>
                     <td>
                         {% if post.isPublished %}
-                                <p>Publié le {{ post.publishedAt|format_date() }}</p>
+                                <p>Publié le {{ post.publishedAt|format_datetime() }}</p>
                             {% else %}
                                 <p>Pas encore</p>
                         {% endif %}
@@ -67,18 +67,19 @@
                             <div class="form-check form-switch">
                                 <input type="hidden" name="csrf_token" value="{{csrf_token('publish_post_'~post.id)}}">
                                 <input type="hidden" name="_method" value="PUT">
-                                <input   {{ post.isPublished ? 'checked' : '' }} onclick="return confirm('Confirmer cette action?');" onchange="this.form.submit()" class="form-check-input" type="checkbox" role="switch" id="switch_{{post.id}}" checked>
+                                <input   {{ post.isPublished ? 'checked' : '' }} onclick="return confirm('Confirmer cette action?');" onchange="this.form.submit()" class="form-check-input" type="checkbox" role="switch" id="switch_{{post.id}}">
                                 <label class="form-check-label" for="switch_{{post.id}}"></label>
                             </div>
                         </form>
                     </td>
-                    <td>{{post.createdAt|format_datetime}}</td>
-                    <td>{{post.updatedAt|format_datetime}}</td>
+                    <td>{{post.updatedAt|format_datetime()}}</td>
+                    <td>{{post.createdAt|format_datetime()}}</td>
                     <td>
                         <a href="{{path('admin_post_edit', {'id':post.id})}}" class="btn btn-sm btn-secondary">Modifier</a>
                             <form class="d-inline" action="{{path('admin_post_delete', {'id':post.id})}}" method="post">
                                 <input type="hidden" name="_csrf_token" value="{{csrf_token('delete_post_'~post.id)}}">
-                                <input onclick="return confirm('En supprimant cet objet, vous supprimez également tous les articles qui lui sont associés. Vous confirmez?')" type="submit" class="btn btn-sm btn-danger mt-2" value="Supprimer">
+                                {# <input type="submit" class="btn btn-sm btn-danger mt-2" value="Supprimer"> #}
+                                <input onclick="return confirm('Confirmer la suppression?')" type="submit" class="btn btn-sm btn-danger" value="Supprimer">
                             </form>
                     </td>
                 </tr>
