@@ -23,9 +23,9 @@ class ContactController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/contact/{id<\d+>}/delete', name: 'admin_contact_delete')]
-    public function delete(int $id, Contact $contact, Request $request, EntityManagerInterface $em): Response
-    {
+    // #[Route('/admin/contact/{id<\d+>}/delete', name: 'admin_contact_delete')]
+    // public function delete(int $id, Contact $contact, Request $request, EntityManagerInterface $em): Response
+    // {
         // if ( $this->isCsrfTokenValid('delete_contact'.$contact->getId(), $request->request->get('csrf_token')) ) 
         // {
         //     $em->remove($contact);
@@ -33,13 +33,27 @@ class ContactController extends AbstractController
 
         //     $this->addFlash('success', "Ce contact a été supprimé.");
         // }
-        $contact = $em->getRepository(Contact::class)->find($id);
+        // $contact = $em->getRepository(Contact::class)->find($id);
 
-        $em->remove($contact);
-        $em->flush();
+        // $em->remove($contact);
+        // $em->flush();
 
-        return $this->redirectToRoute('admin_contact_index');
+        // return $this->redirectToRoute('admin_contact_index');
 
         // $this->addFlash('success', "Ce contact a été supprimé.");
+    // }
+
+    #[Route('/admin/contact/{id<\d+>}/delete', name: 'admin_contact_delete', methods: ['POST'])]
+    public function delete(Contact $contact, Request $request, EntityManagerInterface $em): Response
+    {
+        if ( $this->isCsrfTokenValid("delete_contact_{$contact->getId()}", $request->request->get('_csrf_token')))
+        {
+            $em->remove($contact);
+            $em->flush();
+
+            $this->addFlash("success", "Le contact a été supprimé. ");
+        }
+
+        return $this->redirectToRoute("admin_contact_index");
     }
 }

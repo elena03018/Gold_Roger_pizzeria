@@ -3,9 +3,9 @@
 namespace App\Controller\Admin\Post;
 
 use App\Entity\Post;
+use DateTimeImmutable;
 use App\Form\PostFormType;
 use App\Form\PostFormTpeType;
-use Monolog\DateTimeImmutable;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,7 +58,7 @@ class PostController extends AbstractController
     {
         if ( $this->isCsrfTokenValid("publish_post_" . $post->getId(), $request->request->get('csrf_token') ) )
         {
-            if( true === $post->IsPublished() )
+            if( false === $post->isPublished() )
             {
                 $post->setPublished(true);
                 $post->setPublishedAt(new DateTimeImmutable());
@@ -110,10 +110,10 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/post/{id}/delete', name: 'admin_post_delete', methods: ['DELETE'])]
+    #[Route('/admin/post/{id<\d+>}/delete', name: 'admin_post_delete', methods: ['POST'])]
     public function delete(Post $post, Request $request, EntityManagerInterface $em): Response
     {
-        if ( $this->isCsrfTokenValid("delete_post_" . $post->getId(), $request->request->get('csrf_token')))
+        if ( $this->isCsrfTokenValid("delete_post_{$post->getId()}", $request->request->get('_csrf_token')))
         {
             $em->remove($post);
             $em->flush();

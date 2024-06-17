@@ -35,8 +35,8 @@ class PostFormTpeType extends AbstractType
             ])
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
-                'allow_delete' => true,
-                'delete_label' => 'Supprimer',
+                'allow_delete' => false,
+                'delete_label' => false,
                 'download_label' => false,
                 'download_uri' => false,
                 'image_uri' => false,
