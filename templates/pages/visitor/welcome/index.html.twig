@@ -4,299 +4,58 @@
 
 {% block description %}Bienvenue à la pizzeria Gold Roger, où la tradition italienne rencontre la passion de la bonne cuisine. Découvrez nos pizzas préparées avec des ingrédients frais et authentiques. Venez nous rendre visite pour une expérience culinaire inoubliable!{% endblock %}
 
+
 {% block main %}
     {# Image d'accueil #}
-    <main>
-        <div>
-            <h2 class="text-light col-4 text-center w-100 my-3">GOLD ROGER PIZZERIA</h2>
-        </div>
-        
-        <div class="pt-5 d-flex flex-column rownded-pill" style="height:80vh">
-            <div class="d-flex justify-content-center align-items-center mt-5">
-                <button class="reserveztable mt-5 text-center btn btn-lg btn-outline-dark" href="reserveztable">
-                <h1>Réserver une table</h1>
-                </button>
-            </div>
-        </div>
-    </main>
-
-   {# Carousel
-            <!--Carousel Big-->
-            <div id="carouselExemple" class="carousel slide carousel-big">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                <div class="card">
-                    <div class="card-body">
-                    
-                    <div class="row">
-                        <div class="col-md-4">
-                        <img src="{{asset('images/visitor/carousel/Burrata-pomodoriSecchi.jpg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">BURRATA E POMODORI SECCHI</h5>
-                    <p class="card-text">Tomates, burrata, tomates séchées</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                        <div class="col-md-4">
-                        <img src="{{asset('images/visitor/carousel/Cozze-polpo-gamberi.jpg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">COZZE, POLPO E GAMBERI</h5>
-                    <p class="card-text">Tomates, moules, poulpe, gambas</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                        <div class="col-md-4">
-                        <img src="{{asset('images/visitor/carousel/Mele-gorgonzola-fichi.jpg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">MELE, GORGONZOLA E FICHI</h5>
-                        <p class="card-text">Tomates, mozzarella, gorgonzola, pommes, figues</p>
-                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                    </div>
-
-                    
-                    </div>
-                </div>
-                </div>
-
-                <div class="carousel-item">
-                <div class="card">
-                    <div class="card-body">
-                    
-                    <div class="row">
-                        <div class="col-md-4">
-                        <img src="{{asset('images/visitor/carousel/Tartaredimanzo-cipollaCaramellate.jpeg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">TARTARE DI MANZO E CIPOLLE CARAMELLATE</h5>
-                    <p class="card-text">Tomates, tartare de bœuf et oignons caramélisés</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                        <div class="col-md-4">
-                        <img src="{{asset('images/visitor/carousel/Cozze-zucchine-fioridizucca.jpg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">COZZE, ZUCCHINE E FIORI DI ZUCCA</h5>
-                    <p class="card-text">Tomates, moules, courgettes et fleurs de courge</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                        <div class="col-md-4">
-                        <img src="{{asset('images/visitor/carousel/Affumicati-di-mare.jpeg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">AFFUMICATI DI MARE</h5>
-                        <p class="card-text">Tomates, thon fumé, saumon fumé</p>
-                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                    </div>
-
-                    
-                    </div>
-                </div>
-                </div>
-
-                <div class="carousel-item">
-                <div class="card">
-                    <div class="card-body">
-                    
-                    <div class="row">
-                        <div class="col-md-4">
-                        <img src="{{asset('images/visitor/carousel/Burrata-pomodoriSecchi.jpg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">BURRATA E POMODORI SECCHI</h5>
-                    <p class="card-text">Tomates, burrata, tomates séchées</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                        <div class="col-md-4">
-                        <img src="{{asset('images/visitor/carousel/Cozze-polpo-gamberi.jpg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">COZZE,POLPO E GAMBERI</h5>
-                    <p class="card-text">Tomates, moules, poulpe, gambas</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                        <div class="col-md-4">
-                        <img src="{{asset('images/visitor/carousel/Mele-gorgonzola-fichi.jpg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">MELE, GORGONZOLA E FICHI</h5>
-                        <p class="card-text">Tomates, mozzarella, gorgonzola, pommes, figues</p>
-                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                    </div>
-
-                    
-                    </div>
-                </div>
-                </div>
-            </div>
-
-
-
-
-
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-            </div>
-
-
-            <!--Carousel Medium-->
-            <div id="carouselExampleMedium" class="carousel slide carousel-medium">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                <div class="card">
-                    <div class="card-body">
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                        <img src="{{asset('images/visitor/carousel/Burrata-pomodoriSecchi.jpg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">BURRATA E POMODORI SECCHI</h5>
-                    <p class="card-text">Tomates, burrata, tomates séchées</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                        <div class="col-md-6">
-                        <img src="{{asset('images/visitor/carousel/Cozze-polpo-gamberi.jpg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">COZZE, POLPO E GAMBERI</h5>
-                    <p class="card-text">Tomates, moules, poulpe, gambas</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                    </div>
-
-                    
-                    </div>
-                </div>
-                </div>
-
-                <div class="carousel-item">
-                <div class="card">
-                    <div class="card-body">
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                        <img src="{{asset('images/visitor/carousel/Tartaredimanzo-cipollaCaramellate.jpeg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">TARTARE DI MANZO E CIPOLLE CARAMELLATE</h5>
-                    <p class="card-text">Tomates, tartare de bœuf et oignons caramélisés</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                        <div class="col-md-6">
-                        <img src="{{asset('images/visitor/carousel/Cozze-zucchine-fioridizucca.jpg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">COZZE, ZUCCHINE E FIORI DI ZUCCA</h5>
-                    <p class="card-text">Tomates, moules, courgettes et fleurs de courge</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                    </div>
-
-                    
-                    </div>
-                </div>
-                </div>
-
-                <div class="carousel-item">
-                <div class="card">
-                    <div class="card-body">
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                        <img src="{{asset('images/visitor/carousel/Affumicati-di-mare.jpeg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">AFFUMICATI DI MARE</h5>
-                    <p class="card-text">Tomates, thon fumé, saumon fumé</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                        <div class="col-md-6">
-                        <img src="{{asset('images/visitor/carousel/Mele-gorgonzola-fichi.jpg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">MELE, GORGONZOLA E FICHI</h5>
-                    <p class="card-text">Tomates, mozzarella, gorgonzola, pommes, figues</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                    </div>
-
-                    
-                    </div>
-                </div>
-                </div>
-            </div>
-
-
-
-
-
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleMedium" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleMedium" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-            </div>
-
-            <!--Carousel Little-->
-            <div id="carouselExampleLittle" class="carousel slide carousel-little">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                <div class="card">
-                    <div class="card-body">
-                    
-                    <div class="row">
-                        <div class="col-md-12">
-                        <img src="{{asset('images/visitor/carousel/Mele-gorgonzola-fichi.jpg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">MELE, GORGONZOLA E FICHI</h5>
-                    <p class="card-text">Tomates, mozzarella, gorgonzola, pommes, figues</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                    </div>
-
-                    
-                    </div>
-                </div>
-                </div>
-
-                <div class="carousel-item">
-                <div class="card">
-                    <div class="card-body">
-                    
-                    <div class="row">
-                        <div class="col-md-12">
-                        <img src="{{asset('images/visitor/carousel/Burrata-pomodoriSecchi.jpg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">BURRATA E POMODORI SECCHI/h5>
-                    <p class="card-text">Tomates, burrata, tomates séchées</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                    </div>
-
-                    
-                    </div>
-                </div>
-                </div>
-
-                <div class="carousel-item">
-                <div class="card">
-                    <div class="card-body">
-                    
-                    <div class="row">
-                        <div class="col-md-12">
-                        <img src="{{asset('images/visitor/carousel/Cozze-zucchine-fioridizucca.jpg')}}"  alt="Pizzapazza">
-                        <h5 class="card-title">COZZE, ZUCCHINE E FIORI DI ZUCCA</h5>
-                    <p class="card-text">Tomates, moules, courgettes et fleurs de courge</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                        </div>
-                    </div>
-
-                    
-                    </div>
-                </div>
-                </div>
-            </div>
-
-
-
-
-
-
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleLittle" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleLittle" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-            </div> #}
-
-    {# Footer #}
     
+            <div>
+                <h2 class="text-light col-4 text-center w-100 my-3">GOLD ROGER PIZZERIA</h2>
+            </div>
+            
+            <div class="pt-5 d-flex flex-column rounded-pill" style="height:80vh">
+                <div class="d-flex justify-content-center align-items-center mt-5">
+                    <a class="reserveztable mt-5 text-center btn btn-lg btn-outline-dark" href="reserveztable">
+                        <h1>Réserver une table</h1>
+                    </a>
+                </div>
+            </div>
+        
 
+    {# Header #}
+    {# <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-sm-12">
+                    <img src="{{ asset('images/visitor/menu/bufala.png') }}" class="img-fluid">
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    <div>
+                        <p>
+                            Nous sommes qui
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            bla bla
+                        </p>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </header> #}
+
+        {# <section>
+            <div>
+                <h1 class="text-center my-3 display-5">Nous sommes qui</h1>
+            </div> 
+        </section> #}
 {% endblock %}
+
+    {# Footer #}  
+{% block footer %}
+{% endblock %}
+
+
+
+
 
