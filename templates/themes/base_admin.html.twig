@@ -228,9 +228,8 @@
                         </li>
                         <li class="nav-item">
                         <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('admin_post_index')}}">
-                        <i class="fa-solid fa-pizza-slice"></i>
-                            
-                            Les pizzas
+                            <i class="fa-solid fa-pizza-slice"></i>
+                            Les pizzas 
                         </a>
                         </li>
                         {# <li class="nav-item">
@@ -272,19 +271,26 @@
                     </li> #}
 
                     <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center gap-2" href="{{path('visitor_welcome_index')}}">
+                        <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('admin_profile_index')}}">
+                            <i class="fa-solid fa-rotate-left"></i>
+                            Mon profil
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('visitor_welcome_index')}}">
                             <i class="fa-solid fa-rotate-left"></i>
                             Retour au site
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center gap-2" href="{{path('user_home_index')}}">
+                        <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('user_home_index')}}">
                             <i class="fa-solid fa-rotate-left"></i>
                             Espace privé
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center gap-2" href="{{path('app_logout')}}">
+                        <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_logout')}}">
                             <i class="fa-solid fa-right-from-bracket"></i>
                             Deconnexion
                         </a>

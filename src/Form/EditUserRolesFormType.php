@@ -23,10 +23,10 @@ class EditUserRolesFormType extends AbstractType
                 'required' => true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Select a Role'
+                        'message' => 'Select a Rôle'
                     ]),
                     new Choice([
-                        'choices' => ['ROLE_USER', 'ROLE ADMIN' ],
+                        'choices' => ['ROLE_USER', 'ROLE_ADMIN' ],
                         'message' => 'Please select a valid rôle',
                     ])  
                 ],
@@ -34,7 +34,7 @@ class EditUserRolesFormType extends AbstractType
 
                 'choices'  => [
                     'Rôle utilisateur' => "ROLE_USER",
-                    'Rôle administrateur' => "ROLE ADMIN",
+                    'Rôle administrateur' => "ROLE_ADMIN",
                 ],
                 'expanded'=> false,
                 'multiple' => true
