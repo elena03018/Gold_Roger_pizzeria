@@ -5,8 +5,12 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+
+use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class EditUserRolesFormType extends AbstractType
@@ -16,11 +20,18 @@ class EditUserRolesFormType extends AbstractType
         $builder
 
             ->add('roles', ChoiceType::class, [
-                'contraints' => [
+                'required' => true,
+                'constraints' => [
                     new NotBlank([
-                        "message" => "Le rôle est obligatoire."
-                    ])
+                        'message' => 'Select a Role'
+                    ]),
+                    new Choice([
+                        'choices' => ['ROLE_USER', 'ROLE ADMIN' ],
+                        'message' => 'Please select a valid rôle',
+                    ])  
                 ],
+                
+
                 'choices'  => [
                     'Rôle utilisateur' => "ROLE_USER",
                     'Rôle administrateur' => "ROLE ADMIN",
