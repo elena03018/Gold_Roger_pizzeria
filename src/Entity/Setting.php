@@ -54,11 +54,11 @@ class Setting
     #[ORM\Column(length: 255)]
     private ?string $address = null;
 
-    #[Gedmo\Timestampable(on:'create')]
+    // #[Gedmo\Timestampable(on:'create')]
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[Gedmo\Timestampable(on:'update')]
+    // #[Gedmo\Timestampable(on:'update')]
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
@@ -111,24 +111,24 @@ class Setting
         return $this->createdAt;
     }
 
-    // public function setCreatedAt(?\DateTimeImmutable $createdAt): static
-    // {
-    //     $this->createdAt = $createdAt;
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    // public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
-    // {
-    //     $this->updatedAt = $updatedAt;
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
     public function getUser(): ?User
     {

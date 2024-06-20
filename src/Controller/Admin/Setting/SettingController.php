@@ -5,6 +5,7 @@ namespace App\Controller\Admin\Setting;
 use App\Entity\Setting;
 use App\Form\SettingFormType;
 use App\Repository\SettingRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +17,9 @@ class SettingController extends AbstractController
     #[Route('/admin/setting', name: 'admin_setting_index', methods: ['GET'])]
     public function index(SettingRepository $settingRepository): Response
     {
-        $setting = $settingRepository->find(5);
+        $settings = $settingRepository->findAll();
+
+        $setting = $settings[0];
 
         return $this->render('pages/admin/setting/index.html.twig', [
             'setting' => $setting,
@@ -35,6 +38,8 @@ class SettingController extends AbstractController
         if( $form->isSubmitted() && $form->isValid() )
         {
             //$setting->setUser($this->getUser());
+
+            $setting->setUpdatedAt(new DateTimeImmutable());
 
             $em->persist($setting);
             $em->flush();
