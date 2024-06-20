@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Doctrine\ORM\Query\Expr\Math;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -21,20 +22,19 @@ class EditUserRolesFormType extends AbstractType
 
             ->add('roles', ChoiceType::class, [
                 'required' => true,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Select a Rôle'
-                    ]),
-                    new Choice([
-                        'choices' => ['ROLE_USER', 'ROLE_ADMIN' ],
-                        'message' => 'Please select a valid rôle',
-                    ])  
-                ],
-                
-
                 'choices'  => [
                     'Rôle utilisateur' => "ROLE_USER",
                     'Rôle administrateur' => "ROLE_ADMIN",
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Sélectionner un rôle'
+                    ]),
+                    new Choice([
+                        'message' => 'Veuillez sélectionner un rôle valide.',
+                        'choices'  => ["ROLE_USER", "ROLE_ADMIN"],
+                        'match' => false
+                    ])
                 ],
                 'expanded'=> false,
                 'multiple' => true

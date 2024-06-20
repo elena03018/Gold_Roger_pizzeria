@@ -49,7 +49,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/user/{id<\d+>}/delete', name: 'admin_user_delete', methods: ['POST'])]
+    #[Route('/admin/user/{id<\d+>}/delete', name: 'admin_user_delete', methods: ['DELETE'])]
     public function delete(User $user, Request $request, EntityManagerInterface $em): Response
     {
         if ( $this->isCsrfTokenValid('delete_user_'.$user->getId(), $request->request->get('csrf_token')) ) 
@@ -57,7 +57,7 @@ class UserController extends AbstractController
 
             $this->addFlash('success', "{$user->getFirstName()} {$user->getLastName()} a été supprimé!");
 
-            $post = $user->getPosts();
+            $posts = $user->getPosts();
 
             foreach ($posts as $post) 
             {

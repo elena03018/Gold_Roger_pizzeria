@@ -30,12 +30,13 @@
 
 
 /* Main-page d'accueil */
-.page{
+.welcome-header{
     background-image: url(../images/foto-homepage.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0 !important;
     background-position: 20%;
+    padding-top: 150px;
 }
 
 .reserveztable{

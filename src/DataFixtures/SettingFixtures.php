@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Setting;
+use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -28,6 +29,8 @@ class SettingFixtures extends Fixture
         $setting->setPhone("06 01 01 01 01");
         $setting->setAddress("via Cavour 1, 09016 Iglesias, Italie");
         $setting->setUser(null);
+        $setting->setCreatedAt(new DateTimeImmutable());
+        $setting->setUpdatedAt(new DateTimeImmutable());
 
         return $setting;
     }

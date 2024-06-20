@@ -6,6 +6,7 @@ use App\Entity\Post;
 use DateTimeImmutable;
 use App\Form\PostFormType;
 use App\Form\PostFormTpeType;
+use App\Repository\CategoryRepository;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PostController extends AbstractController
 {
+
+    public function __construct(
+        private CategoryRepository $categoryRepository
+    )
+    {
+        
+    }
     #[Route('/admin/post/list', name: 'admin_post_index', methods: ['GET'])]
     public function index(PostRepository $postRepository): Response
     {
@@ -27,6 +35,13 @@ class PostController extends AbstractController
     #[Route('/admin/post/create', name: 'admin_post_create', methods: ['GET', 'POST'])]
     public function create(Request $request, EntityManagerInterface $em): Response 
     {
+
+        if ( count($this->categoryRepository->findAll()) <= 0 ) 
+        {
+            $this->addFlash('warning', "Pour ajouter des pizzas, vous devez créer au moins une catégorie");
+            return $this->redirectToRoute('admin_category_index');
+        }
+
         $post = new Post();
 
         $form = $this->createForm(PostFormTpeType::class, $post);
