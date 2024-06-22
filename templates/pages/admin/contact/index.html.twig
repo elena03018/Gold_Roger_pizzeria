@@ -37,6 +37,7 @@
                     <th>Prénom</th>
                     <th>Nom</th>
                     <th>Email</th>
+                    <th>Is User?</th>
                     <th>Phone</th>
                     <th>Message</th>
                     <th>Envoyé le</th>
@@ -51,6 +52,8 @@
                         <td>{{contact.firstName}}</td>
                         <td>{{contact.lastName}}</td>
                         <td>{{contact.email}}</td>
+                        <td>{{contact.user ? 'Oui': 'Non'}}
+                        </td>
                         <td>{{contact.phone ? contact.phone : '---'}}</td>
                         <td>
                             <a data-bs-toggle="modal" data-bs-target="#modal_{{contact.id}}" href="#" class="text-dark"><i class="fa-solid fa-book-open-reader"></i></a>
