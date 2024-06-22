@@ -37,7 +37,7 @@ class SettingController extends AbstractController
 
         if( $form->isSubmitted() && $form->isValid() )
         {
-            //$setting->setUser($this->getUser());
+            $setting->setUser($this->getUser());
 
             $setting->setUpdatedAt(new DateTimeImmutable());
 
