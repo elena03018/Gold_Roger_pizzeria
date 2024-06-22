@@ -50,49 +50,7 @@
     }
 }
 
-
-
-
-/* Carousel */
-
-/* @media(max-width:768px) {
-    .carousel-big{
-        display: none;
-    }
-    .carousel-medium{
-        display: none;
-    }    
-}
-
-@media(min-width:769px) and (max-width: 900px) {
-    .carousel-big{
-        display: none;
-    }
-    .carousel-little{
-        display: none;
-    }   
-}
-
-@media(min-width:901px) {
-    .carousel-little{
-        display: none;
-    }
-    .carousel-medium{
-        display: none;
-    }   
-}
-
-@media(max-width:768px){
-    .footer-prova {
-        display:block;
-        text-align: center;
-    }
-    .footer-prova div {
-        padding-left: 0;
-        padding-right: 0;
-    }
-} */
-
+/* Main- Photo de pizza-presentation */
 
 
 /* Footer Style */
@@ -110,6 +68,5 @@
 {
     clip-path: ellipse(42% 29% at 50% 50%);
 }
-
 
 

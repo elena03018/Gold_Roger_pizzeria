@@ -23,7 +23,6 @@
                                 <a href="{{path('user_profile_edit_password')}}"class="m-2 btn btn-dark">Modifier votre mot de passe</a>
                                 {% if "ROLE_SUPER_ADMIN" not in app.user.roles %}
                                     <form method="POST" action="{{path('user_profile_delete')}}" class="d-inline">
-                                        <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="csrf_token" value="{{csrf_token('delete_profile')}}">
                                         <input onclick="return confirm('Confirmer la suppression de votre compte?')" type="submit" class="m-2 btn btn-danger" value="Supprimer votre compte">
                                     </form>
