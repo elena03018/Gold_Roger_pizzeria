@@ -40,7 +40,8 @@ class UserFixtures extends Fixture
         $user->setLastName("bellu");
         $user->setEmail("alvin@gmail.com");
         $user->setPhone("076543234");
-        
+        $user->setCreatedAt(new DateTimeImmutable());
+        $user->setUpdatedAt(new DateTimeImmutable());
 
         $passwordHashed = $this->hasher-> hashPassword($user, "azerty1234A*");
         $user->setPassword($passwordHashed);
@@ -59,7 +60,8 @@ class UserFixtures extends Fixture
         $user->setLastName("bellu");
         $user->setEmail("spitz@gmail.com");
         $user->setPhone("076543238");
-        
+        $user->setCreatedAt(new DateTimeImmutable());
+        $user->setUpdatedAt(new DateTimeImmutable());
 
         $passwordHashed = $this->hasher-> hashPassword($user, "azerty1234A*");
         $user->setPassword($passwordHashed);
@@ -78,7 +80,8 @@ class UserFixtures extends Fixture
         $user->setLastName("bellu");
         $user->setEmail("fiocco@gmail.com");
         $user->setPhone("07654323422");
-        
+        $user->setCreatedAt(new DateTimeImmutable());
+        $user->setUpdatedAt(new DateTimeImmutable());
 
         $passwordHashed = $this->hasher-> hashPassword($user, "azerty1234A*");
         $user->setPassword($passwordHashed);

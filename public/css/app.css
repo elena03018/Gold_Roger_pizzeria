@@ -28,7 +28,7 @@
     margin-top: 10px;  
 }
 
-
+/* Welcome page */
 /* Main-page d'accueil */
 .welcome-header{
     background-image: url(../images/foto-homepage.jpg);
@@ -51,7 +51,9 @@
 }
 
 /* Main- Photo de pizza-presentation */
-
+.pizzaPresentazione, .carousel-inner{
+    border-radius: 30px;
+}
 
 /* Footer Style */
 

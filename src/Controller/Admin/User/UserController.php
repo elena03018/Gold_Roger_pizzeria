@@ -4,10 +4,11 @@ namespace App\Controller\Admin\User;
 
 
 use App\Entity\User;
+use DateTimeImmutable;
+use PhpParser\Node\Stmt\Foreach_;
 use App\Repository\UserRepository;
 use App\Form\EditUserRolesFormType;
 use Doctrine\ORM\EntityManagerInterface;
-use PhpParser\Node\Stmt\Foreach_;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -36,6 +37,9 @@ class UserController extends AbstractController
 
         if( $form->isSubmitted() && $form->isValid() )
         {
+
+            $user->setUpdatedAt(new DateTimeImmutable());
+
             $em->persist($user);
             $em->flush();  
 
