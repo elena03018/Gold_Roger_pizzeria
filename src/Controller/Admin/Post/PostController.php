@@ -106,6 +106,8 @@ class PostController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            $post->setUpdatedAt(new DateTimeImmutable());
+
             $admin = $this->getUser();
 
             $post->setUser($admin);
