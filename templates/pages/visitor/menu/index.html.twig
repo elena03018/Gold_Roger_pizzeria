@@ -6,142 +6,100 @@
 
 {% block main %}
     <main class="main-menu">
-        <h1 class="text-dark text-center mt-5 mb-2">Pizze classiche</h1>
-        
-        <div>
-            <div class="d-flex justify-content-center mt-5 mb-5">
-                <div class="w-75 justify-content-center d-flex align-items-center">
-
-                    <img  class="rounded-circle mt-4" src="{{asset('images/visitor/menu/PizzaMargherita.jpg')}}"  class="img-fluid" alt="Responsive image" width="200px">
-                    <div class="d-flex justify-content-center align-items-center flex-column">
-                        <p class="text-dark p-2 h2 fw-bold">Pizza Margherita</p>
-                        <p class="text-dark px-5 fst-italic">Ingrédients:Tomates, Mozzarella, Basilic, Huile d’olive</p>
-                        <div class="text-dark flex-row d-flex">
-                            <div class="border border-dark me-5 px-4 py-2"> small</div>
-                            <p class="pt-2 fw-bold">19€</p>
-                        </div>
-                        <div class="text-dark flex-row d-flex mt-4">
-                            <div class="border border-dark me-5 px-4 py-2"> large</div>
-                            <p class="pt-2 fw-bold">29€</p>
-                        </div>
+        <div class="container">
+            <div class="row text-center my-5">
+                <div class="col-md-6">
+                    <div class="dropdown">
+                        <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Les catégories
+                        </button>
+                        <ul class="dropdown-menu">
+                        {% if categories is not empty %}
+                            {% for category in categories %}
+                            <li><a class="dropdown-item" href="{{path('visitor_menu_post_filter_by_category', {'id':category.id, 'slug':category.slug})}}">{{category.name}} ({{category.getPublishedPosts|length}})</a></li>
+                        {% endfor %} 
+                            {% else %}
+                            <li><a class="dropdown-item" href="#">Aucune catégorie disponible</a></li>
+                        {% endif %}
+                        </ul>
                     </div>
                 </div>
             </div>
-            <hr style=" color:white; width: 50%; margin-left: 25%; " >
         </div>
+        
+        <h1 class="text-dark text-center mt-5 mb-2">Pizze classiche</h1>
+
+        {# <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                        {% for post in posts %}
+                            <div>
+                                <div class="d-flex justify-content-center mt-5 mb-5">
+                                    <div class="w-75 justify-content-center d-flex align-items-center">
+
+                                        <img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('visitor_post_thumb')}}" class="img-fluid rounded-circle mt-4" alt="{{ post.title }}" width="200px">
+                                        <div class="d-flex justify-content-center align-items-center flex-column">
+                                            <p class="text-dark p-2 h2 fw-bold">{{post.title}}</p>
+                                            <p class="text-dark px-5 fst-italic">{{post.ingredients}}</p>
+                                            <div class="text-dark flex-row d-flex">
+                                                <div class="pt-2 fw-bold"> prix</div>
+                                                <p class="border border-dark me-5 px-4 py-2"> {{post.price}}€</p>
+                                            </div>
+                                            <div class="text-dark flex-row d-flex mt-4">
+                                                <div class="border border-dark me-5 px-4 py-2"> large</div>
+                                                <p class="pt-2 fw-bold">29€</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style=" color:white; width: 50%; margin-left: 25%; " >
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+        </div> #}
+        
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                        {% for post in posts %}
+                            <div class="card mb-3 shadow">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('visitor_post_thumb')}}" class="img-fluid rounded-start" alt="{{ post.title }}">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">{{post.title}}</h5>
+                                            <p class="card-text text-center">{{post.ingredients}}</p>
+                                            <p class="card-text text-center"><small class="text-body-secondary">{{post.price}} €</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
+        <h1 class="text-dark text-center mt-5 mb-2">Pizze gourmet</h1>
+
+
+
+        
 
     
-        <div>
-            <div class="d-flex justify-content-center mt-5 mb-5">
-                <div class="w-75 justify-content-center d-flex align-items-center">
+        
 
-                    <img  class="rounded-circle mt-4" src="{{asset('images/visitor/menu/Parma.jpg')}}" class="img-fluid" alt="Responsive image" width="200px">
-                    <div class="d-flex justify-content-center align-items-center flex-column">
-                        <p class="text-dark p-2 h2 fw-bold">Pizza Parma</p>
-                        <p class="text-dark px-5 fst-italic"> Ingrédients:Tomates, Mozzarella, Jambon cru, Huile d’olive</p>
-                        <div class="text-dark flex-row d-flex">
-                            <div class="border border-dark me-5 px-4 py-2"> small</div>
-                            <p class="pt-2 fw-bold">13€</p>
-                        </div>
-                        <div class="text-dark flex-row d-flex mt-4">
-                            <div class="border border-dark me-5 px-4 py-2"> large</div>
-                            <p class="pt-2 fw-bold">22€</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr style=" color:white; width: 50%; margin-left: 25%; " >
-        </div>
+        
 
-        <div>
-            <div class="d-flex justify-content-center mt-5 mb-5">
-                <div class="w-75 justify-content-center d-flex align-items-center">
 
-                    <img  class="rounded-circle mt-4" src="{{asset('images/visitor/menu/Napoletana.jpeg')}}"  class="img-fluid" alt="Responsive image" width="200px">
-                    <div class="d-flex justify-content-center align-items-center flex-column">
-                        <p class="text-dark p-2 h2 fw-bold">Pizza Napoli</p>
-                        <p class="text-dark px-5 fst-italic">Ingrédients:Tomates, Mozzarella, Câpres, Anchois, Huile d’olive</p>
-                        <div class="text-dark flex-row d-flex">
-                            <div class="border border-dark me-5 px-4 py-2"> small</div>
-                            <p class="pt-2 fw-bold">19€</p>
-                        </div>
-                        <div class="text-dark flex-row d-flex mt-4">
-                            <div class="border border-dark me-5 px-4 py-2"> large</div>
-                            <p class="pt-2 fw-bold">29€</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr style=" color:white; width: 50%; margin-left: 25%; " >
-        </div>
 
-        <div>
-            <div class="d-flex justify-content-center mt-5 mb-5">
-                <div class="w-75 justify-content-center d-flex align-items-center">
+        
 
-                    <img  class="rounded-circle mt-4" src="{{asset('images/visitor/menu/Parmigiano-Rucola-Crudo.jpeg')}}"  class="img-fluid" alt="Responsive image" width="200px">
-                    <div class="d-flex justify-content-center align-items-center flex-column">
-                        <p class="text-dark p-2 h2 fw-bold">Pizza Parmigiano, rucola e crudo</p>
-                        <p class="text-dark px-5 fst-italic">Ingrédients:Tomates, Mozzarella, Parmigiano, Rucola, Prosciutto Crudo, Huile d’olive</p>
-                        <div class="text-dark flex-row d-flex">
-                            <div class="border border-dark me-5 px-4 py-2"> small</div>
-                            <p class="pt-2 fw-bold">19€</p>
-                        </div>
-                        <div class="text-dark flex-row d-flex mt-4">
-                            <div class="border border-dark me-5 px-4 py-2"> large</div>
-                            <p class="pt-2 fw-bold">29€</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr style=" color:white; width: 50%; margin-left: 25%; " >
-        </div>
+       
 
-        <div>
-            <div class="d-flex justify-content-center mt-5 mb-5">
-                <div class="w-75 justify-content-center d-flex align-items-center">
-
-                    <img  class="rounded-circle mt-4" src="{{asset('images/visitor/menu/parmigiana.jpg')}}"  class="img-fluid" alt="Responsive image" width="200px">
-                    <div class="d-flex justify-content-center align-items-center flex-column">
-                        <p class="text-dark p-2 h2 fw-bold">Pizza Parmigiana</p>
-                        <p class="text-dark px-5 fst-italic">Ingrédients:Tomates, Mozzarella, Parmigiano Reggiano, Aubergine, Basilic, Huile d’olive</p>
-                        <div class="text-dark flex-row d-flex">
-                            <div class="border border-dark me-5 px-4 py-2"> small</div>
-                            <p class="pt-2 fw-bold">19€</p>
-                        </div>
-                        <div class="text-dark flex-row d-flex mt-4">
-                            <div class="border border-dark me-5 px-4 py-2"> large</div>
-                            <p class="pt-2 fw-bold">29€</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr style=" color:white; width: 50%; margin-left: 25%; " >
-        </div>
-
-        <div>
-            <div class="d-flex justify-content-center mt-5 mb-5">
-                <div class="w-75 justify-content-center d-flex align-items-center">
-
-                    <img  class="rounded-circle mt-4" src="{{asset('images/visitor/menu/Quattro stagioni.jpg')}}"  class="img-fluid" alt="Responsive image" width="200px">
-                    <div class="d-flex justify-content-center align-items-center flex-column">
-                        <p class="text-dark p-2 h2 fw-bold">Pizza Quattro Stagioni</p>
-                        <p class="text-dark px-5 fst-italic">Ingrédients:Tomates, Mozzarella, Parmigiano Reggiano, Aubergine, Basilic, Huile d’olive</p>
-                        <div class="text-dark flex-row d-flex">
-                            <div class="border border-dark me-5 px-4 py-2"> small</div>
-                            <p class="pt-2 fw-bold">19€</p>
-                        </div>
-                        <div class="text-dark flex-row d-flex mt-4">
-                            <div class="border border-dark me-5 px-4 py-2"> large</div>
-                            <p class="pt-2 fw-bold">29€</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr style=" color:white; width: 50%; margin-left: 25%; " >
-        </div>
-
-        <div>
+        {# <div>
             <div class="d-flex justify-content-center mt-5 mb-5">
                 <div class="w-75 justify-content-center d-flex align-items-center">
 
@@ -161,9 +119,9 @@
                 </div>
             </div>
             <hr style=" color:white; width: 50%; margin-left: 25%; " >
-        </div>
+        </div> #}
 
-        <div>
+        {# <div>
             <div class="d-flex justify-content-center mt-5 mb-5">
                 <div class="w-75 justify-content-center d-flex align-items-center">
 
@@ -183,9 +141,9 @@
                 </div>
             </div>
             <hr style=" color:white; width: 50%; margin-left: 25%; " >
-        </div>
+        </div> #}
 
-        <div>
+        {# <div>
             <div class="d-flex justify-content-center mt-5 mb-5">
                 <div class="w-75 justify-content-center d-flex align-items-center">
 
@@ -205,9 +163,9 @@
                 </div>
             </div>
             <hr style=" color:white; width: 50%; margin-left: 25%; " >
-        </div>
+        </div> #}
 
-        <div>
+        {# <div>
             <div class="d-flex justify-content-center mt-5 mb-5">
                 <div class="w-75 justify-content-center d-flex align-items-center">
 
@@ -227,9 +185,9 @@
                 </div>
             </div>
             <hr style=" color:white; width: 50%; margin-left: 25%; " >
-        </div>
+        </div> #}
 
-        <div>
+        {# <div>
             <div class="d-flex justify-content-center mt-5 mb-5">
                 <div class="w-75 justify-content-center d-flex align-items-center">
 
@@ -249,9 +207,9 @@
                 </div>
             </div>
             <hr style=" color:white; width: 50%; margin-left: 25%; " >
-        </div>
+        </div> #}
 
-        <div>
+        {# <div>
             <div class="d-flex justify-content-center mt-5 mb-5">
                 <div class="w-75 justify-content-center d-flex align-items-center">
 
@@ -271,7 +229,7 @@
                 </div>
             </div>
             <hr style=" color:white; width: 50%; margin-left: 25%; " >
-        </div>
+        </div> #}
 
     </main>
 {% endblock %}

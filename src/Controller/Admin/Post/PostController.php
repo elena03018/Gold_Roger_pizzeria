@@ -111,7 +111,7 @@ class PostController extends AbstractController
             $admin = $this->getUser();
 
             $post->setUser($admin);
-            $post->setPublished(false);
+        
 
             $em->persist($post);
             $em->flush();
