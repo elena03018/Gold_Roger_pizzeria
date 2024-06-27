@@ -81,7 +81,7 @@
                             <a class="nav-link mx-lg-5 text-dark" href="{{path('visitor_contact_create')}}">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-lg-5 text-dark" href="{{path('visitor_avis_index')}}">Avis</a>
+                            <a class="nav-link mx-lg-5 text-dark" href="{{path('visitor_comment_index')}}">Avis</a>
                         </li>
                         {% if is_granted('ROLE_ADMIN') %}
                                 <li class="nav-item">
@@ -163,8 +163,22 @@
 
 
         {# Footer #}
-        <footer>
-            <p></p>
+        <footer class="bg-warning text-dark text-center py-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="cursor-pointer"><a href="{{path('visitor_menu_index')}}" class="text-dark">©Gold Roger Pizzeria - Mentions légales</a></p>
+                        
+                    </div>
+
+                    <div class="col-md-6">
+                        <a class="text-dark" target="_blank" href="{{settingService.setting.instagram}}">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        {# Facebook-Instagram #}
+                    </div>
+                </div>
+            </div>
         </footer>
 
     </body>
