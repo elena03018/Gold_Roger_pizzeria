@@ -1,0 +1,44 @@
+{% extends 'themes/base_visitor.html.twig' %}
+
+{% block title %}Avis{% endblock %}
+
+{% block description %}Lisez tous les avis{% endblock %}
+
+{% block main %}
+    <main>
+        <h1 class="text-center my-3 display-5">Les avis</h1>
+
+        <div class="container">
+            <div class="row">
+            {% if app.user %}
+                <div class="my-5" id="comment-div">
+                    {{ form_start(form, {'action': path('visitor_comment_index')~"#comment-div"}) }}
+                        <div class="mb-3">
+                            <label>Votre avis</label>
+                            {{ form_widget(form.content, {'attr': {'class':'form-control'}}) }}
+                        </div>
+                        <div>
+                            <input type="submit" value="Commenter" class="btn btn-warning">
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            {% else %}
+                <p class="text-center my-5"><strong>Veuillez vous <a href="{{path('visitor_authentication_login')}}" class="btn btn-outline-warning">connecter</a> ou vous <a href="{{path('visitor_registration_register')}}" class="text-warning">inscrire</a> avant de laisser un avis.<strong></p>
+            {% endif %}
+                
+                <div class="my-5">
+                    {% if comments|length > 0 %} 
+                        {% for comment in comments|reverse %} 
+                            <div class="shadow bg-white p-3"> 
+                                <p><strong>{{comment.user.firstName}} {{comment.user.lastName}}</strong></p> 
+                                <p>{{comment.content}}</p>
+                                <p>Publié le {{ comment.createdAt|format_date() }}</p>
+                            </div>   
+                        {% endfor %} 
+                    {% endif %} 
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
