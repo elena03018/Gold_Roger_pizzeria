@@ -18,7 +18,13 @@ class SettingFormType extends AbstractType
             ->add('email', EmailType::class)
             ->add('phone', TelType::class)
             ->add('address', TextType::class)
-            
+            ->add('hours', TextType::class)
+            ->add('facebook', TextType::class, [
+                'required' => false,
+            ])
+            ->add('instagram', TextType::class, [
+                'required' => false,
+            ])
         ;
     }
 

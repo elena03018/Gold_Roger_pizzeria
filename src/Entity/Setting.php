@@ -68,6 +68,13 @@ class Setting
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $instagram = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $hours = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $facebook = null;
+    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -156,4 +163,31 @@ class Setting
 
         return $this;
     }
+
+    public function getHours(): ?string
+    {
+        return $this->hours;
+    }
+
+    public function setHours(?string $hours): static
+    {
+        $this->hours = $hours;
+
+        return $this;
+    }
+
+    public function getFacebook(): ?string
+    {
+        return $this->facebook;
+    }
+
+    public function setFacebook(?string $facebook): static
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+
+
 }
