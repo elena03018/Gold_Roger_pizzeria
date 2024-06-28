@@ -26,9 +26,11 @@ class SettingFixtures extends Fixture
         $setting = new Setting ();
 
         $setting->setEmail("goldrogerpizzeria@gmail.com");
-        $setting->setPhone("06 01 01 01 01 078");
-        $setting->setAddress("via Cavour 1, 09016 Iglesias, Italie");
+        $setting->setPhone("+39 370 120 9376");
+        $setting->setAddress("Via Cavour 16/18, 09016 Iglesias, Italie");
+        $setting->setHours("Du lundi au dimanche: 18h00-23h00");
         $setting->setInstagram("https://www.instagram.com/goldrogerpizzeria_/");
+        $setting->setFacebook("https://www.facebook.com/profile.php?id=61559835743248&locale=it_IT");
         $setting->setUser(null);
         $setting->setCreatedAt(new DateTimeImmutable());
         $setting->setUpdatedAt(new DateTimeImmutable());

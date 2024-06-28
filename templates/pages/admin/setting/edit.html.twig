@@ -31,6 +31,24 @@
                         {{ form_widget(form.address, {'attr': {'class': 'form-control'}}) }}
                     </div>
 
+                    <div class="mb-3">
+                        <label for="setting_form_hours">Opening hours</label>
+                        <div class="text-danger">{{form_errors(form.hours)}}</div>
+                        {{ form_widget(form.hours, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="setting_form_instagram">Instagram</label>
+                        <div class="text-danger">{{form_errors(form.instagram)}}</div>
+                        {{ form_widget(form.instagram, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="setting_form_facebook">Facebook</label>
+                        <div class="text-danger">{{form_errors(form.facebook)}}</div>
+                        {{ form_widget(form.facebook, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
                     <div>
                         <input formnovalidate type="submit" class="btn btn-warning" value="Modifier">
                     </div>   
