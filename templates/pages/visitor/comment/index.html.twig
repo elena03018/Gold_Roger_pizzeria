@@ -9,7 +9,7 @@
         <h1 class="text-center my-3 display-5">Les avis</h1>
 
         <div class="container">
-            <div class="row">
+            <div class="col-md-6 mx-auto">
             {% if app.user %}
                 <div class="my-5" id="comment-div">
                     {{ form_start(form, {'action': path('visitor_comment_index')~"#comment-div"}) }}
@@ -26,10 +26,10 @@
                 <p class="text-center my-5"><strong>Veuillez vous <a href="{{path('visitor_authentication_login')}}" class="btn btn-outline-warning">connecter</a> ou vous <a href="{{path('visitor_registration_register')}}" class="text-warning">inscrire</a> avant de laisser un avis.<strong></p>
             {% endif %}
                 
-                <div class="my-5">
+                <div class="row mb-3">
                     {% if comments|length > 0 %} 
                         {% for comment in comments|reverse %} 
-                            <div class="shadow bg-white p-3"> 
+                            <div class="shadow bg-white p-3 mt-3">
                                 <p><strong>{{comment.user.firstName}} {{comment.user.lastName}}</strong></p> 
                                 <p>{{comment.content}}</p>
                                 <p>Publié le {{ comment.createdAt|format_date() }}</p>

@@ -48,7 +48,7 @@ class CommentController extends AbstractController
 
         return $this->render('pages/visitor/comment/index.html.twig', [
             "form" => $form->createView(),
-           "comments"  => $commentRepository->findAll()
+            "comments"  => $commentRepository->findAll()
         ]);
     }
 }
