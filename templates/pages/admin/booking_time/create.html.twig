@@ -1,0 +1,26 @@
+{% extends 'themes/base_admin.html.twig' %}
+
+{% block title %}Nouvel horaire{% endblock %}
+
+{% block description %}Nouvel horaire{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Nouvel horaire</h1>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4 mx-auto">
+                {{ form_start(form) }}
+                    <div class="mb-3">
+                        <label for="admin_booking_time_form_time">Time</label>
+                        <div class="text-danger">{{form_errors(form.time)}}</div>
+                        {{ form_widget(form.time, {'attr': {'class':'form-control'}}) }}
+                    </div>
+                    <div>
+                        <input formnovalidate type="submit" class="btn btn-primary" value="Ajouter">
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

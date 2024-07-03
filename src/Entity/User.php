@@ -145,12 +145,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]
     private Collection $comments;
 
+    /**
+     * @var Collection<int, BookingTime>
+     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: BookingTime::class)]
+    private Collection $bookingTimes;
+
     public function __construct()
     {
         $this->roles[] = "ROLE_USER";
         $this->contacts = new ArrayCollection();
         $this->posts = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->bookingTimes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -396,6 +403,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($comment->getUser() === $this) {
                 $comment->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BookingTime>
+     */
+    public function getBookingTimes(): Collection
+    {
+        return $this->bookingTimes;
+    }
+
+    public function addBookingTime(BookingTime $bookingTime): static
+    {
+        if (!$this->bookingTimes->contains($bookingTime)) {
+            $this->bookingTimes->add($bookingTime);
+            $bookingTime->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBookingTime(BookingTime $bookingTime): static
+    {
+        if ($this->bookingTimes->removeElement($bookingTime)) {
+            // set the owning side to null (unless already changed)
+            if ($bookingTime->getUser() === $this) {
+                $bookingTime->setUser(null);
             }
         }
 
