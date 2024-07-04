@@ -1,0 +1,36 @@
+{% extends 'themes/base_admin.html.twig' %}
+
+{% block title %}Nouvelle table{% endblock %}
+
+{% block description %}Nouvelle table{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Nouvelle table</h1>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4 mx-auto">
+                {{ form_start(form) }}
+                    <div class="mb-3">
+                        <label for="admin_booking_table_form_number">Nom de la table</label>
+                        <div class="text-danger">{{form_errors(form.number)}}</div>
+                        {{ form_widget(form.number, {'attr': {'class':'form-control', 'autofocus':'autofocus'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="admin_booking_table_form_location">Emplacement de la table</label>
+                        <div class="text-danger">{{form_errors(form.location)}}</div>
+                        {{ form_widget(form.location, {'attr': {'class':'form-control', 'autofocus':'autofocus'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="admin_booking_table_form_peopleNumber">Nombre maximum de personnes</label>
+                        <div class="text-danger">{{form_errors(form.peopleNumber)}}</div>
+                        {{ form_widget(form.peopleNumber, {'attr': {'class':'form-control', 'autofocus':'autofocus'}}) }}
+                    </div>
+                    <div>
+                        <input formnovalidate type="submit" class="btn btn-primary" value="Ajouter">
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
