@@ -151,6 +151,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: BookingTime::class)]
     private Collection $bookingTimes;
 
+    /**
+     * @var Collection<int, BookingTable>
+     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: BookingTable::class)]
+    private Collection $bookingTables;
+
     public function __construct()
     {
         $this->roles[] = "ROLE_USER";
@@ -158,6 +164,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->posts = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->bookingTimes = new ArrayCollection();
+        $this->bookingTables = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -433,6 +440,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($bookingTime->getUser() === $this) {
                 $bookingTime->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BookingTable>
+     */
+    public function getBookingTables(): Collection
+    {
+        return $this->bookingTables;
+    }
+
+    public function addBookingTable(BookingTable $bookingTable): static
+    {
+        if (!$this->bookingTables->contains($bookingTable)) {
+            $this->bookingTables->add($bookingTable);
+            $bookingTable->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBookingTable(BookingTable $bookingTable): static
+    {
+        if ($this->bookingTables->removeElement($bookingTable)) {
+            // set the owning side to null (unless already changed)
+            if ($bookingTable->getUser() === $this) {
+                $bookingTable->setUser(null);
             }
         }
 

@@ -2,11 +2,15 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\BookingTimeRepository;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+
+
+#[UniqueEntity('time', message: "Ce temps existe déjà.")]
 #[ORM\Entity(repositoryClass: BookingTimeRepository::class)]
 class BookingTime
 {
@@ -16,7 +20,7 @@ class BookingTime
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'bookingTimes')]
-    private ?UserInterface $user = null;
+    private ?User $user = null;
 
     
     #[Assert\NotBlank(message: "Le temps est obligatoire")]
@@ -35,12 +39,12 @@ class BookingTime
         return $this->id;
     }
 
-    public function getUser(): ?UserInterface
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?UserInterface $user): static
+    public function setUser(?User $user): static
     {
         $this->user = $user;
 
@@ -52,7 +56,7 @@ class BookingTime
         return $this->time;
     }
 
-    public function setTime(string $time): static
+    public function setTime(?string $time): static
     {
         $this->time = $time;
 
