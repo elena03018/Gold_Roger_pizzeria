@@ -1,0 +1,59 @@
+{% extends 'themes/base_visitor.html.twig' %}
+
+{% block title %}La réservation{% endblock %}
+
+{% block description %}La réservation{% endblock %}
+
+{% block main %}
+    <main>
+        <h1 class="text-center my-3 display-5">Réserver une table</h1>
+
+
+        {% if app.user %}
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-8 col-lg-5 mx-auto">
+                        {{ form_start(form) }}
+                            <div class="mb-3">
+                                <label for="">Date <span class="text-danger">*</span></label>
+                                <div class="text-danger">{{ form_errors(form.date) }}</div>
+                                {{ form_widget(form.date, {'attr': {'class':'form-control'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Heure <span class="text-danger">*</span></label>
+                                <div class="text-danger">{{ form_errors(form.time) }}</div>
+                                {{ form_widget(form.time, {'attr': {'class':'form-control'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Nombre de personnes<span class="text-danger">*</span></label>
+                                <div class="text-danger">{{ form_errors(form.peopleNumber) }}</div>
+                                {{ form_widget(form.peopleNumber, {'attr': {'class':'form-control'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="">C'est à quelle occasion?</label>
+                                <div class="text-danger">{{ form_errors(form.purpose) }}</div>
+                                {{ form_widget(form.purpose, {'attr': {'class':'form-control'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Informations complémentaires: veuillez spécifier les allergies, intolérances ou demandes particulières.</label>
+                                <div class="text-danger">{{ form_errors(form.details) }}</div>
+                                {{ form_widget(form.details, {'attr': {'class':'form-control'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                <input formnovalidate type="submit" class="btn btn-warning w-100" value="Réserver">
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div> 
+        
+        {% else %}
+            <div class="mt-5 text-center mb-4">
+                <a href="" class="btn btn-sm btn-outline-warning">Connexion</a>
+                <a href="" class="btn btn-sm btn-warning">Inscription</a>
+            </div>
+        {% endif %}
+
+        
+    </main>
+{% endblock %}

@@ -157,6 +157,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: BookingTable::class)]
     private Collection $bookingTables;
 
+    /**
+     * @var Collection<int, Booking>
+     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Booking::class)]
+    private Collection $bookings;
+
     public function __construct()
     {
         $this->roles[] = "ROLE_USER";
@@ -165,6 +171,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->comments = new ArrayCollection();
         $this->bookingTimes = new ArrayCollection();
         $this->bookingTables = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -470,6 +477,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($bookingTable->getUser() === $this) {
                 $bookingTable->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): static
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): static
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getUser() === $this) {
+                $booking->setUser(null);
             }
         }
 
