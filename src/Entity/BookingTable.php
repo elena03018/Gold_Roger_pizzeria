@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BookingTableRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -62,9 +64,16 @@ class BookingTable
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    /**
+     * @var Collection<int, Booking>
+     */
+    #[ORM\OneToMany(mappedBy: 'bookingTable', targetEntity: Booking::class)]
+    private Collection $bookings;
+
     public function __construct()
     {
         $this->status = self::STATUS_IS_AVAILABLE;
+        $this->bookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -152,6 +161,36 @@ class BookingTable
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): static
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->setBookingTable($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): static
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getBookingTable() === $this) {
+                $booking->setBookingTable(null);
+            }
+        }
 
         return $this;
     }
