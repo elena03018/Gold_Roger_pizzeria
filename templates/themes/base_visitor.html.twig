@@ -69,19 +69,19 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class=" navbar-nav justify-content-center flex-grow-1 pe-3">
+                <div class=" collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="mynav navbar-nav justify-content-center flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link mx-lg-5 text-dark" href="{{path('visitor_menu_index')}}">Menu</a>
+                            <a class="nav-link text-dark " href="{{path('visitor_menu_index')}}">Menu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-lg-5 text-dark" href="{{path('visitor_booking_create')}}">Réserver une table</a>         
+                            <a class="nav-link text-dark" href="{{path('visitor_booking_create')}}">Réserver</a>         
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-lg-5 text-dark" href="{{path('visitor_contact_create')}}">Contact</a>
+                            <a class="nav-link text-dark" href="{{path('visitor_contact_create')}}">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-lg-5 text-dark" href="{{path('visitor_comment_index')}}">Avis</a>
+                            <a class="nav-link text-dark" href="{{path('visitor_comment_index')}}">Avis</a>
                         </li>
                         {% if is_granted('ROLE_ADMIN') %}
                                 <li class="nav-item">
@@ -96,19 +96,19 @@
                             {% endif %}
                             
                                 {% if app.user %}
-                                    <li class>
+                                    <li class="nav-item">
                                         <a href="{{path('app_logout')}}"  class="login-button">Logout</a>
                                     </li>
                                 {% else %}
-                                    <li>
-                                        <a href="{{path('visitor_registration_register')}}" class="my-2 mx-lg-2 mx-sm-2 login-button">Inscription</a>
+                                    <li class="nav-item">
+                                        <a href="{{path('visitor_registration_register')}}" class="nav-link login-button">Inscription</a>
                                             {# <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                                             aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                                             <span class="navbar-toggler-icon"></span>
                                             </button> #}
                                     </li> 
-                                    <li>
-                                        <a href="{{path('visitor_authentication_login')}}" class="my-2 mx-lg-2 mx-sm-2 login-button">Login</a>
+                                    <li class="nav-item">
+                                        <a href="{{path('visitor_authentication_login')}}" class="nav-link login-button">Login</a>
                                     </li>   
                                 {% endif %}
                                 
@@ -163,12 +163,12 @@
 
 
         {# Footer #}
-        <footer class="bg-warning text-dark text-center py-2">
+        <footer class="footer text-dark text-center py-2">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
                     {# Mentions légales #}
-                        <p class="cursor-pointer"><a href="" class="text-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-copyright"></i>Gold Roger Pizzeria - Mentions légales</a></p>
+                        <p class="cursor-pointer"><a href="" class="text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-copyright"></i>Gold Roger Pizzeria - Mentions légales</a></p>
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -205,6 +205,16 @@
                                                 Propriété intellectuelle<br>
 
                                                 Tous les contenus présents sur ce site, incluant, de façon non limitative, les graphismes, images, textes, vidéos, animations, sons, logos, gifs et icônes ainsi que leur mise en forme sont la propriété exclusive de la société Gold Roger Pizzeria, à l'exception des marques, logos ou contenus appartenant à d'autres sociétés partenaires ou auteurs.
+                                                </p>
+                                                <p>
+                                                Finalités du traitement<br>
+
+                                                Les données personnelles collectées sont utilisées pour :
+
+                                                La gestion des réservations de tables<br>
+                                                La communication avec les clients<br>
+                                                L'amélioration des services proposés<br>
+                                                La gestion des commentaires et des avis laissés par les clients<br>
                                                 </p>
                                                 <p>
                                                 Conditions d'utilisation<br>
