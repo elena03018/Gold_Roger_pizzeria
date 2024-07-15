@@ -1,0 +1,32 @@
+{% extends 'themes/base_admin.html.twig' %}
+
+{% block title %}Traitement de la réservation numero {{booking.id}}{% endblock %}
+
+{% block description %}Traitement de la réservation numero {{booking.id}}{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Traitement de la réservation numero {{booking.id}}</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                {{form_start(form)}}
+                    <div class="mb-3">
+                        <label for="">Statut</label>
+                        <div class="text-danger">{{form_errors(form.status)}}</div>
+                        {{ form_widget(form.status, {'attr': {'class':'form-control'}})}}
+                    </div>
+                    <div class="mb-3">
+                        <label for="">La table correspondante</label>
+                        <div class="text-danger">{{form_errors(form.bookingTable)}}</div>
+                        {{ form_widget(form.bookingTable, {'attr': {'class':'form-control'}}) }}
+                    </div>
+                    <div>
+                        <input formnovalidate type="submit" class="btn btn-primary shadow" value="Envoyer">
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

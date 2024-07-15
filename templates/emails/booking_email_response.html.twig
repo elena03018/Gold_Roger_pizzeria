@@ -1,0 +1,7 @@
+<h2>Ciao {{booking_first_name}} {{booking_last_name}}</h2>
+
+<p>Votre code de réservation est le {{booking_code}}</p>
+
+{% if booking_table %}
+    <p>Le numéro de la table correspondente est {{booking_table.number}}</p>
+{% endif %}

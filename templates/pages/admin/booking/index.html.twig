@@ -1,0 +1,73 @@
+{% extends 'themes/base_admin.html.twig' %}
+
+{% block title %}Les réservations{% endblock %}
+
+{% block description %}Les réservations{% endblock %}
+
+{% block jQuery %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}
+
+{% block dataTables %}
+    <link href="https://cdn.datatables.net/v/bs5/dt-2.0.8/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/v/bs5/dt-2.0.8/datatables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable({
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/2.0.8/i18n/fr-FR.json',
+                },
+            });
+        } );
+    </script>
+{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Les réservations</h1>
+
+    {% include 'components/_alert.html.twig' %}
+
+    <div class="table-responsive"> 
+        <table id="myTable" class="table table-striped table-hover table-border text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Utilisateur</th>
+                    <th>Table </th>
+                    <th>Code</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Heure</th>
+                    <th>Pour</th>
+                    <th>Détails</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                    <tr>
+                        <td>{{booking.id}}</td>
+                        <td>{{booking.user.firstName}} {{booking.user.lastName}}</td>
+                        <td>{{booking.bookingTable ? booking.bookingTable : 'Non renseigné'}}</td>
+                        <td>{{booking.code}}</td>
+                        <td>{{booking.status}}</td>
+                        <td>{{booking.date|format_date()}}</td>
+                        <td>{{booking.time}}</td>
+                        <td>{{booking.peopleNumber}} personnes</td>
+                        <td>
+                            <a href="" class="btn btn-sm btn-dark">Lire</a>
+                        </td>
+                        
+                        <td>
+                            <a href="{{path('admin_booking_process', {'id':booking.id})}}" class="btn btn-sm btn-secondary">Traiter</a>
+                            <form class="d-inline" action="{{path('admin_booking_delete', {'id':booking.id})}}" method="POST">
+                                <input type="hidden" name="_csrf_token" value="{{csrf_token('delete_booking_'~booking.id)}}">
+                                <input onclick="return confirm('Confirmer la suppression?');" type="submit" class="btn btn-sm btn-danger" value="Supprimer">
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
