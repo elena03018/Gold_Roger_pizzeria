@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\BookingRepository;
+use App\Entity\BookingTable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\BookingRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
@@ -12,7 +13,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: BookingRepository::class)]
 class Booking
 {
-    private const STATUS_IS_PENDING = "en attente";
+    public const STATUS_IS_PENDING = "en attente";
+    public const STATUS_IS_VALID = "validée";
+    public const STATUS_IS_NOT_VALID = "non validée";
+    public const STATUS_IS_END = "cloturée";
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,6 +25,8 @@ class Booking
 
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     private ?User $user = null;
+
+
 
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     private ?BookingTable $bookingTable = null;
@@ -117,7 +123,7 @@ class Booking
         return $this->status;
     }
 
-    public function setStatus(string $status): static
+    public function setStatus(?string $status): static
     {
         $this->status = $status;
 

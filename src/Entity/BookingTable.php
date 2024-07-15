@@ -15,7 +15,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class BookingTable
 {
 
-    private const STATUS_IS_AVAILABLE = "disponible";
+    public const STATUS_IS_AVAILABLE = "disponible";
+    public const STATUS_IS_NOT_AVAILABLE = "occupée";
+
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -74,6 +76,11 @@ class BookingTable
     {
         $this->status = self::STATUS_IS_AVAILABLE;
         $this->bookings = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return "Table {$this->getNumber()} prévue pour {$this->getPeopleNumber()} personnes {$this->getLocation()}";
     }
 
     public function getId(): ?int
