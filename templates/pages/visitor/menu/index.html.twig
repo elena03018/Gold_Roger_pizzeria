@@ -27,7 +27,7 @@
             </div>
         </div>
         
-        <h1 class="text-dark text-center mt-5 mb-2">Pizze classiche</h1>
+        <h1 class="text-dark text-center mt-5 mb-4">Pizze classiche</h1>
 
         {# <div class="container">
             <div class="row">
@@ -62,7 +62,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-8 mx-auto">
+                <div class="col-md-6 mx-auto">
                         {% for post in posts %}
                             <div class="card mb-3 shadow">
                                 <div class="row g-0">
@@ -82,8 +82,29 @@
                 </div>
             </div>
         </div>
-        <h1 class="text-dark text-center mt-5 mb-2">Pizze gourmet</h1>
-
+        <h1 class="text-dark text-center mt-5 mb-5">Pizze gourmet</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                        {% for post in pizzeGourmet %}
+                            <div class="card mb-3 shadow">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('visitor_post_thumb')}}" class="img-fluid rounded-start" alt="{{ post.title }}">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">{{post.title}}</h5>
+                                            <p class="card-text text-center">{{post.ingredients}}</p>
+                                            <p class="card-text text-center"><small class="text-body-secondary">{{post.price}} €</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
 
 
 

@@ -1,0 +1,266 @@
+{% extends 'themes/base_visitor.html.twig' %}
+
+{% block title %}Menu{% endblock %}
+
+{% block description %}Liste des pizzas{% endblock %}
+
+{% block main %}
+    <main class="main-menu">
+        <div class="container">
+            <div class="row text-center my-5">
+                <div class="col-md-6">
+                    <div class="dropdown">
+                        <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Les catégories
+                        </button>
+                        <ul class="dropdown-menu">
+                        {% if categories is not empty %}
+                            {% for category in categories %}
+                            <li><a class="dropdown-item" href="{{path('visitor_menu_post_filter_by_category', {'id':category.id, 'slug':category.slug})}}">{{category.name}} ({{category.getPublishedPosts|length}})</a></li>
+                        {% endfor %} 
+                            {% else %}
+                            <li><a class="dropdown-item" href="#">Aucune catégorie disponible</a></li>
+                        {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h1 class="text-dark text-center mt-5 mb-4">{{categoryName}}</h1>
+
+        {# <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                        {% for post in posts %}
+                            <div>
+                                <div class="d-flex justify-content-center mt-5 mb-5">
+                                    <div class="w-75 justify-content-center d-flex align-items-center">
+
+                                        <img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('visitor_post_thumb')}}" class="img-fluid rounded-circle mt-4" alt="{{ post.title }}" width="200px">
+                                        <div class="d-flex justify-content-center align-items-center flex-column">
+                                            <p class="text-dark p-2 h2 fw-bold">{{post.title}}</p>
+                                            <p class="text-dark px-5 fst-italic">{{post.ingredients}}</p>
+                                            <div class="text-dark flex-row d-flex">
+                                                <div class="pt-2 fw-bold"> prix</div>
+                                                <p class="border border-dark me-5 px-4 py-2"> {{post.price}}€</p>
+                                            </div>
+                                            <div class="text-dark flex-row d-flex mt-4">
+                                                <div class="border border-dark me-5 px-4 py-2"> large</div>
+                                                <p class="pt-2 fw-bold">29€</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style=" color:white; width: 50%; margin-left: 25%; " >
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+        </div> #}
+        
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                        {% for post in posts %}
+                            <div class="card mb-3 shadow">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('visitor_post_thumb')}}" class="img-fluid rounded-start" alt="{{ post.title }}">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">{{post.title}}</h5>
+                                            <p class="card-text text-center">{{post.ingredients}}</p>
+                                            <p class="card-text text-center"><small class="text-body-secondary">{{post.price}} €</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
+{% endblock %}
+{% block footer %}
+    {% if nombre < 2 %}
+    <footer class="footer text-dark text-center py-2 fixed-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                    {# Mentions légales #}
+                        <p class="cursor-pointer"><a href="" class="text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-copyright"></i>Gold Roger Pizzeria - Mentions légales</a></p>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Mentions légales</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Éditeur du site
+                                                <p>
+                                                Nom de la pizzeria : Gold Roger Pizzeria<br>
+                                                Adresse : Via Camillo Benso Conte di Cavour 16/18, 09016 Iglesias, Italie<br>
+                                                Téléphone : +39 370 120 9376<br>
+                                                Adresse e-mail : goldrogerpizzeria@gmail.com<br>
+                                                Numéro SIRET : 123 456 789 00010<br>
+                                                RCS : Paris B 123 456 789<br>
+                                                Directeur de la publication : Elena Bellu<br>
+                                                </p>
+                                                <p>
+                                                Hébergeur du site<br>
+
+                                                Nom de l'hébergeur : GRP<br>
+                                                Adresse : Via Camillo Benso Conte di Cavour 16/18, 09016 Iglesias, Italie<br>
+                                                Téléphone : +39 370 120 9376<br>
+                                                </p>
+                                                <p>
+                                                Protection des données personnelles<br>
+
+                                                Conformément à la loi Informatique et Libertés du 6 janvier 1978 modifiée, vous disposez d'un droit d'accès, de rectification et de suppression des données personnelles vous concernant. Pour exercer ce droit, vous pouvez nous contacter à l'adresse suivante : goldrogerpizzeria@gmail.com.
+                                                </p>
+
+                                                <p>
+                                                Propriété intellectuelle<br>
+
+                                                Tous les contenus présents sur ce site, incluant, de façon non limitative, les graphismes, images, textes, vidéos, animations, sons, logos, gifs et icônes ainsi que leur mise en forme sont la propriété exclusive de la société Gold Roger Pizzeria, à l'exception des marques, logos ou contenus appartenant à d'autres sociétés partenaires ou auteurs.
+                                                </p>
+                                                <p>
+                                                Finalités du traitement<br>
+
+                                                Les données personnelles collectées sont utilisées pour :
+
+                                                La gestion des réservations de tables<br>
+                                                La communication avec les clients<br>
+                                                L'amélioration des services proposés<br>
+                                                La gestion des commentaires et des avis laissés par les clients<br>
+                                                </p>
+                                                <p>
+                                                Conditions d'utilisation<br>
+
+                                                L'utilisation de ce site est soumise aux conditions générales d'utilisation détaillées dans les sections appropriées. En utilisant ce site, vous acceptez ces conditions sans réserve.
+                                                </p>
+                                                <p>
+                                                Responsabilité<br>
+
+                                                Gold Roger Pizzeria décline toute responsabilité quant aux éventuelles interruptions du site et à ses conséquences.
+                                                </p>
+                                                <p>
+                                                Contact<br>
+
+                                                Pour toute question, vous pouvez nous contacter par e-mail à goldrogerpizzeria@gmail.com ou par téléphone au +39 370 120 9376.
+                                                </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                    </div>
+                    {# Facebook-Instagram #}
+                    <div class="col-md-6">
+                        <a class="text-dark" target="_blank" href="{{settingService.setting.instagram}}">
+                            <i class="icon-soc fa-brands fa-instagram"></i>
+                        </a>
+                        <a class="text-dark" target="_blank" href="{{settingService.setting.facebook}}">
+                            <i class="icon-soc fa-brands fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </footer>
+    {% else %}
+    <footer class="footer text-dark text-center py-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                    {# Mentions légales #}
+                        <p class="cursor-pointer"><a href="" class="text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-copyright"></i>Gold Roger Pizzeria - Mentions légales</a></p>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Mentions légales</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Éditeur du site
+                                                <p>
+                                                Nom de la pizzeria : Gold Roger Pizzeria<br>
+                                                Adresse : Via Camillo Benso Conte di Cavour 16/18, 09016 Iglesias, Italie<br>
+                                                Téléphone : +39 370 120 9376<br>
+                                                Adresse e-mail : goldrogerpizzeria@gmail.com<br>
+                                                Numéro SIRET : 123 456 789 00010<br>
+                                                RCS : Paris B 123 456 789<br>
+                                                Directeur de la publication : Elena Bellu<br>
+                                                </p>
+                                                <p>
+                                                Hébergeur du site<br>
+
+                                                Nom de l'hébergeur : GRP<br>
+                                                Adresse : Via Camillo Benso Conte di Cavour 16/18, 09016 Iglesias, Italie<br>
+                                                Téléphone : +39 370 120 9376<br>
+                                                </p>
+                                                <p>
+                                                Protection des données personnelles<br>
+
+                                                Conformément à la loi Informatique et Libertés du 6 janvier 1978 modifiée, vous disposez d'un droit d'accès, de rectification et de suppression des données personnelles vous concernant. Pour exercer ce droit, vous pouvez nous contacter à l'adresse suivante : goldrogerpizzeria@gmail.com.
+                                                </p>
+
+                                                <p>
+                                                Propriété intellectuelle<br>
+
+                                                Tous les contenus présents sur ce site, incluant, de façon non limitative, les graphismes, images, textes, vidéos, animations, sons, logos, gifs et icônes ainsi que leur mise en forme sont la propriété exclusive de la société Gold Roger Pizzeria, à l'exception des marques, logos ou contenus appartenant à d'autres sociétés partenaires ou auteurs.
+                                                </p>
+                                                <p>
+                                                Finalités du traitement<br>
+
+                                                Les données personnelles collectées sont utilisées pour :
+
+                                                La gestion des réservations de tables<br>
+                                                La communication avec les clients<br>
+                                                L'amélioration des services proposés<br>
+                                                La gestion des commentaires et des avis laissés par les clients<br>
+                                                </p>
+                                                <p>
+                                                Conditions d'utilisation<br>
+
+                                                L'utilisation de ce site est soumise aux conditions générales d'utilisation détaillées dans les sections appropriées. En utilisant ce site, vous acceptez ces conditions sans réserve.
+                                                </p>
+                                                <p>
+                                                Responsabilité<br>
+
+                                                Gold Roger Pizzeria décline toute responsabilité quant aux éventuelles interruptions du site et à ses conséquences.
+                                                </p>
+                                                <p>
+                                                Contact<br>
+
+                                                Pour toute question, vous pouvez nous contacter par e-mail à goldrogerpizzeria@gmail.com ou par téléphone au +39 370 120 9376.
+                                                </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                    </div>
+                    {# Facebook-Instagram #}
+                    <div class="col-md-6">
+                        <a class="text-dark" target="_blank" href="{{settingService.setting.instagram}}">
+                            <i class="icon-soc fa-brands fa-instagram"></i>
+                        </a>
+                        <a class="text-dark" target="_blank" href="{{settingService.setting.facebook}}">
+                            <i class="icon-soc fa-brands fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </footer>
+    {% endif %}
+{% endblock %}

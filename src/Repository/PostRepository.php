@@ -16,20 +16,19 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function filterPostsByCategory(int $category_id) : array
+    public function getProductsWithCategory($category)
     {
-        return $this->createQueryBuilder('p')
-                ->innerJoin('p.category', 'c')
-                ->andWhere('p.isPublished = :val')
-                ->andWhere('p.category = :category_id')
-                ->setParameter('val', true)
-                ->setParameter('category_id', $category_id)
-                ->orderBy('p.publishedAt', 'DESC')
-                ->getQuery()
-                ->getResult()
-            ;
+        $query = $this->_em->createQuery('SELECT p, c FROM App\Entity\Post p JOIN p.category c WHERE c.name = :category AND p.isPublished = true');
+        $query->setParameter('category', $category);
+        return $query->getResult();
     }
-
+    
+    public function getProductsWithCategoryId($id)
+    {
+        $query = $this->_em->createQuery('SELECT p, c FROM App\Entity\Post p JOIN p.category c WHERE c.id = :category AND p.isPublished = true');
+        $query->setParameter('category', $id);
+        return $query->getResult();
+    }
 
 //    /**
 //     * @return Post[] Returns an array of Post objects

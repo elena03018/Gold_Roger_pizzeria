@@ -3,7 +3,7 @@
     font-family: "Poppins", sans-serif;
 }
 
-h1, h2, nav *, footer *, .btn
+h1, h2, h3, nav *, footer *, .btn
 {
     font-family: "Pacifico", cursive;
 }
@@ -69,6 +69,13 @@ p.title{
 .reserveztable{
     background-color: rgba(228, 215, 226, 0.5);
 }
+
+/* .titre{
+    color: red;
+    font-style: italic; 
+    font-size: 80px; 
+    position: relative;
+} */
 
 
 /* @media(max-width:768px){

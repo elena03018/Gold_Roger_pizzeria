@@ -24,8 +24,12 @@
 </script>
 {% endblock %}
 
+
+
 {% block main %}
     <h1 class="text-center my-3 display-5">Liste des pizzas</h1>
+
+     {% include 'components/alert.html.twig' %}
 
     <div class="d-flex justify-content-end align-items-center my-3">
         <a href="{{path('admin_post_create')}}" class="btn btn-warning shadow"><i class="fas fa-plus"></i> Nouvelle pizza</a>
@@ -75,7 +79,7 @@
                     <td>{{post.updatedAt|format_datetime()}}</td>
                     <td>{{post.createdAt|format_datetime()}}</td>
                     <td>
-                        <a href="{{path('admin_post_edit', {'id':post.id})}}" class="btn btn-sm btn-secondary">Modifier</a>
+                        <a href="{{path('admin_post_edit', {'id':post.id})}}" class="btn btn-sm btn-secondary m-1">Modifier</a>
                             <form class="d-inline" action="{{path('admin_post_delete', {'id':post.id})}}" method="post">
                                 <input type="hidden" name="_csrf_token" value="{{csrf_token('delete_post_'~post.id)}}">
                                 {# <input type="submit" class="btn btn-sm btn-danger mt-2" value="Supprimer"> #}
