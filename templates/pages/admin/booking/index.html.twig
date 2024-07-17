@@ -59,7 +59,7 @@
                         </td>
                         
                         <td>
-                            <a href="{{path('admin_booking_process', {'id':booking.id})}}" class="btn btn-sm btn-secondary">Traiter</a>
+                            <a href="{{path('admin_booking_process', {'id':booking.id})}}" class="btn btn-sm btn-secondary m-1">Traiter</a>
                             <form class="d-inline" action="{{path('admin_booking_delete', {'id':booking.id})}}" method="POST">
                                 <input type="hidden" name="_csrf_token" value="{{csrf_token('delete_booking_'~booking.id)}}">
                                 <input onclick="return confirm('Confirmer la suppression?');" type="submit" class="btn btn-sm btn-danger" value="Supprimer">
