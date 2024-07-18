@@ -27,6 +27,11 @@ class BookingController extends AbstractController
     {
         $booking = new Booking();
 
+        /**
+         * @var \App\Entity\User
+         */
+        $user = $this->getUser();
+
         $form = $this->createForm(BookingFormType::class, $booking, [
             "times" => $this->bookingTimeRepository->findAll()
         ]);
@@ -36,28 +41,33 @@ class BookingController extends AbstractController
         if( $form->isSubmitted() && $form->isValid() )
         {
 
-            //funzione utilizzata per generare token o identificatori unici in modo sicuro.
-            $code = time() . bin2hex(random_bytes(3));
-
-            /**
-             * @var User 
-             */
-
-            $user = $this->getUser();
-
-            $booking->setUser($user);
-            $booking->setCode($code);
-            $booking->setCreatedAt(new DateTimeImmutable());
-            $booking->setUpdatedAt(new DateTimeImmutable());
-
-            $this->em->persist($booking);
-            $this->em->flush();
-
-            // $this->addFlash("success", "Votre demande de reservation est pris en compte, nous vous enverrons une réponse dans les prochaines par email.");
-        
-            return $this->redirectToRoute("visitor_booking_create_message", [
-                "id" => $booking->getId()
+            $existingReservation = $this->em->getRepository(Booking::class)->findOneBy([
+                'user' => $user->getId(),
+                'date' => $booking->getDate()
             ]);
+
+            if ($existingReservation) {
+                $this->addFlash('danger', 'Vous avez déjà une réservation pour cette date.');
+            }else{
+
+                //funzione utilizzata per generare token o identificatori unici in modo sicuro.
+                $code = time() . bin2hex(random_bytes(3));
+    
+    
+                $booking->setUser($user);
+                $booking->setCode($code);
+                $booking->setCreatedAt(new DateTimeImmutable());
+                $booking->setUpdatedAt(new DateTimeImmutable());
+    
+                $this->em->persist($booking);
+                $this->em->flush();
+    
+                // $this->addFlash("success", "Votre demande de reservation est pris en compte, nous vous enverrons une réponse dans les prochaines par email.");
+            
+                return $this->redirectToRoute("visitor_booking_create_message", [
+                    "id" => $booking->getId()
+                ]);
+            }
         }
         
         return $this->render('pages/visitor/booking/create.html.twig', [
