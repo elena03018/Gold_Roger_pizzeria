@@ -34,35 +34,17 @@ class BookingFormType extends AbstractType
             "2" => 2,
             "3" => 3,
             "4" => 4,
-            "5" => 5,
-            "6" => 6,
-            "7" => 7,
-            "8" => 8,
-            "9" => 9,
-            "10" => 10,
-            "11" => 11,
-            "12" => 12,
-            "13" => 13,
-            "14" => 14,
-            "15" => 15
         ];
 
         $purposes = [
             "Dîner en famille" => "Dîner en famille", 
             "Réunion d'affaires" => "Réunion d'affaires",
             "Anniversaire" => "Anniversaire", 
-            "Anniversaire de mariage" => "Anniversaire de mariage",
             "Réunion entre amis" => "Réunion entre amis", 
             "Soirée romantique" => "Soirée romantique",
-            "Fête de fiançailles" => "Fête de fiançailles",
-            "Réunion de groupe" => "Réunion de groupe", 
             "Dîner de travail" => "Dîner de travail",
             "Célébration de réussite" => "Célébration de réussite",
-            "Fête de fin d'année" => "Fête de fin d'année", 
             "Dîner avant/après spectacle" => "Dîner avant/après spectacle", 
-            "Réception privée" => "Réception privée", 
-            "Réception de baptême" => "Réception de baptême",
-            "Célébration de diplôme" => "Célébration de diplôme",
             "autre" => "autre"
         ];
 
