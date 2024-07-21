@@ -3,7 +3,7 @@
     font-family: "Poppins", sans-serif;
 }
 
-h1, h2, h3, nav *, footer *, .btn
+h1, h2, h3, nav *, footer *
 {
     font-family: "Pacifico", cursive;
 }
@@ -107,6 +107,14 @@ p.title{
     background-color: #ffffff;
 }
 
+.category{
+    height: 70px;
+    width: 180px;
+    font-size: 18px;
+}
+
+
+
 /* Contact */
 
 .goldroger-visitor-header
@@ -115,3 +123,19 @@ p.title{
 }
 
 
+/* Reservation */
+.reservation{
+    height: 70px;
+    width: 150px;
+    font-size: 30px;
+    
+}
+
+/* Avis */
+.shadow-yellow {
+    box-shadow: 0 4px 8px rgb(255, 99, 71); /* Ombra gialla con opacità */
+}
+/* Inscription page */
+.inscription{
+    background-color: rgb(245, 245, 245);
+}
