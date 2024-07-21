@@ -18,18 +18,18 @@
                             {{ form_widget(form.content, {'attr': {'class':'form-control'}}) }}
                         </div>
                         <div>
-                            <input type="submit" value="Commenter" class="btn btn-warning">
+                            <input type="submit" value="Commenter" class="btn btn-success">
                         </div>
                     {{ form_end(form) }}
                 </div>
             {% else %}
-                <p class="text-center my-5"><strong>Veuillez vous <a href="{{path('visitor_authentication_login')}}" class="btn btn-outline-warning">connecter</a> ou vous <a href="{{path('visitor_registration_register')}}" class="text-warning">inscrire</a> avant de laisser un avis.<strong></p>
+                <p class="text-center my-5"><strong>Veuillez vous <a href="{{path('visitor_authentication_login')}}" class="btn btn-outline-success">connecter</a> ou vous <a href="{{path('visitor_registration_register')}}" class="text-success">inscrire</a> avant de laisser un avis.<strong></p>
             {% endif %}
                 
                 <div class="row mb-3">
                     {% if comments|length > 0 %} 
                         {% for comment in comments|reverse %} 
-                            <div class="shadow bg-white p-3 mt-3">
+                            <div class="shadow-yellow bg-white p-3 mt-3">
                                 <p><strong>{{comment.user.firstName}} {{comment.user.lastName}}</strong></p> 
                                 <p>{{comment.content}}</p>
                                 <p>Publié le {{ comment.createdAt|format_date() }}</p>

@@ -17,6 +17,7 @@ class Booking
     public const STATUS_IS_VALID = "validée";
     public const STATUS_IS_NOT_VALID = "non validée";
     public const STATUS_IS_END = "cloturée";
+    
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

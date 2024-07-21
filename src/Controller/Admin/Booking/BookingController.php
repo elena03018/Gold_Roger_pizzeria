@@ -36,31 +36,122 @@ class BookingController extends AbstractController
         // ]);
     }
 
+    // #[Route('/booking/{id<\d+>}/process', name: 'admin_booking_process', methods:['GET', 'POST'])]
+    // public function process(Booking $booking, Request $request): Response
+    // {
+    //     $form = $this->createForm(AdminBookingFormType::class, $booking);
+
+    //     $form->handleRequest($request);
+
+    //     if( $form->isSubmitted() && $form->isValid() )
+    //     {
+    //         //dd($booking->getStatus());
+    //         //Mettre à jour le statut de la réservation
+
+    //         //Mettre à jour le statut de la table
+    //         $bookingTable = $booking->getBookingTable();
+
+    //         if( Booking::STATUS_IS_VALID === $booking->getStatus() )
+    //         {
+    //             $bookingTable->setStatus(BookingTable::STATUS_IS_NOT_AVAILABLE);
+
+    //             //Envoyer l'email
+    //             $this->sendEmailService->send([
+    //                 "sender_email" => "goldrogerpizzeria@gmail.com", 
+    //                 "sender_name" => "Elena Bellu",
+    //                 "recipient_email" => $booking->getUser()->getEmail(),
+    //                 "subject" =>"Réponse à votre demande de réservation sur Gold Roger Pizzeria",
+    //                 "html_template" => "emails/booking_email_response.html.twig",
+    //                 "context" => [
+    //                     "booking_first_name"    => $booking->getUser()->getFirstName(),
+    //                     "booking_last_name"     => $booking->getUser()->getLastName(),
+    //                     "booking_code"          => $booking->getCode(),
+    //                     "booking_date"          => $booking->getDate(),
+    //                     "booking_time"          => $booking->getTime(),
+    //                     "booking_table"          =>$booking->getBookingTable() ?? null,
+    //                 ]
+    //             ]);
+
+    //         }
+
+    //         if( Booking::STATUS_IS_END === $booking->getStatus() )
+    //         {
+    //             $bookingTable->setStatus(BookingTable::STATUS_IS_AVAILABLE);
+    //         }
+            
+    //         // se la prenotazione non è stata accettata
+
+    //         if (Booking::STATUS_IS_NOT_VALID === $booking->getStatus()) {
+    //             // Invio dell'email di rifiuto
+    //             $this->sendEmailService->send([
+    //                 "sender_email" => "goldrogerpizzeria@gmail.com",
+    //                 "sender_name" => "Elena Bellu",
+    //                 "recipient_email" => $booking->getUser()->getEmail(),
+    //                 "subject" => "Réponse à votre demande de réservation sur Gold Roger Pizzeria",
+    //                 "html_template" => "emails/booking_email_rejection.html.twig",
+    //                 "context" => [
+    //                     "booking_first_name"    => $booking->getUser()->getFirstName(),
+    //                     "booking_last_name"     => $booking->getUser()->getLastName(),
+    //                     "message"               => "Malheureusement, votre demande de réservation a été rejetée. Nous vous invitons à effectuer une nouvelle réservation pour une autre date qui vous convient ou à nous appeler au 0987654321 pour vérifier ensemble les disponibilités. Merci!",
+    //                 ]
+    //             ]);
+    //         }
+
+
+    //         //Vérifier si le booking table correspondante existe vraiment
+
+    //         //dd($form)
+
+    //         //Charger le manager des entités
+
+    //         //Mettre à jour Persistenza delle modifiche
+    //         $this->em->persist($booking);
+    //         $this->em->persist($bookingTable);
+    //         $this->em->flush();
+
+            
+
+    //         //Message flash per confermare che la prenotazione è stata trattata
+    //         $this->addFlash("success", "La réservation {$booking->getId()} est traitée");
+    //         //Rediriger Reindirizzamento alla pagina delle prenotazioni amministrative
+    //         return $this->redirectToRoute("admin_booking_index");
+    //     }
+
+    //     return $this->render('pages/admin/booking/process.html.twig', [
+    //         "form" => $form->createView(), 
+    //         "booking" => $booking
+    //     ]);
+    // }
+
     #[Route('/booking/{id<\d+>}/process', name: 'admin_booking_process', methods:['GET', 'POST'])]
     public function process(Booking $booking, Request $request): Response
     {
         $form = $this->createForm(AdminBookingFormType::class, $booking);
-
         $form->handleRequest($request);
 
-        if( $form->isSubmitted() && $form->isValid() )
-        {
-            //dd($booking->getStatus());
-            //Mettre à jour le statut de la réservation
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Assicurati che la prenotazione e il tavolo associato non siano NULL
+            if (!$booking) {
+                throw $this->createNotFoundException('Réservation non trouvée');
+            }
 
-            //Mettre à jour le statut de la table
             $bookingTable = $booking->getBookingTable();
 
-            if( Booking::STATUS_IS_VALID === $booking->getStatus() )
-            {
-                $bookingTable->setStatus(BookingTable::STATUS_IS_NOT_AVAILABLE);
+            // Gestisci lo stato della prenotazione e invia le email
+            if (Booking::STATUS_IS_VALID === $booking->getStatus()) {
+                if ($bookingTable) {
+                    $bookingTable->setStatus(BookingTable::STATUS_IS_NOT_AVAILABLE);
 
-                //Envoyer l'email
+                    // Persisti anche il tavolo se esiste
+                    $this->em->persist($bookingTable);
+                }
+
+                // Invio dell'email di conferma
                 $this->sendEmailService->send([
-                    "sender_email" => "goldrogerpizzeria@gmail.com", 
+                    "sender_email" => "goldrogerpizzeria@gmail.com",
                     "sender_name" => "Elena Bellu",
                     "recipient_email" => $booking->getUser()->getEmail(),
-                    "subject" =>"Réponse à votre demande de réservation sur Gold Roger Pizzeria",
+                    "subject" => "Réponse à votre demande de réservation sur Gold Roger Pizzeria",
                     "html_template" => "emails/booking_email_response.html.twig",
                     "context" => [
                         "booking_first_name"    => $booking->getUser()->getFirstName(),
@@ -68,44 +159,54 @@ class BookingController extends AbstractController
                         "booking_code"          => $booking->getCode(),
                         "booking_date"          => $booking->getDate(),
                         "booking_time"          => $booking->getTime(),
-                        "booking_table"          =>$booking->getBookingTable() ?? null,
+                        "booking_table"         => $bookingTable,
                     ]
                 ]);
+            } elseif (Booking::STATUS_IS_END === $booking->getStatus()) {
+                if ($bookingTable) {
+                    $bookingTable->setStatus(BookingTable::STATUS_IS_AVAILABLE);
 
+                    // Persisti anche il tavolo se esiste
+                    $this->em->persist($bookingTable);
+                }
+            } elseif (Booking::STATUS_IS_NOT_VALID === $booking->getStatus()) {
+                // Invio dell'email di rifiuto
+                $this->sendEmailService->send([
+                    "sender_email" => "goldrogerpizzeria@gmail.com",
+                    "sender_name" => "Elena Bellu",
+                    "recipient_email" => $booking->getUser()->getEmail(),
+                    "subject" => "Réponse à votre demande de réservation sur Gold Roger Pizzeria",
+                    "html_template" => "emails/booking_email_rejection.html.twig",
+                    "context" => [
+                        "booking_first_name"    => $booking->getUser()->getFirstName(),
+                        "booking_last_name"     => $booking->getUser()->getLastName(),
+                        "message"               => "Malheureusement, votre demande de réservation a été rejetée. Nous vous invitons à effectuer une nouvelle réservation pour une autre date qui vous convient ou à nous appeler au 0987654321 pour vérifier ensemble les disponibilités. Merci!",
+                    ]
+                ]);
+            } else {
+                throw new \Exception('Statut de réservation non reconnu');
             }
 
-            if( Booking::STATUS_IS_END === $booking->getStatus() )
-            {
-                $bookingTable->setStatus(BookingTable::STATUS_IS_AVAILABLE);
-            }
-            
-
-            //Vérifier si le booking table correspondante existe vraiment
-
-            //dd($form)
-
-            //Charger le manager des entités
-
-            //Mettre à jour 
+            // Persisti la prenotazione
             $this->em->persist($booking);
-            $this->em->persist($bookingTable);
 
-
+            // Flushing delle modifiche
             $this->em->flush();
 
-            
+            // Messaggio flash per confermare che la prenotazione è stata trattata
+            $this->addFlash("success", "La réservation {$booking->getId()} a été traitée.");
 
-            //Message flash 
-            $this->addFlash("success", "La réservation {$booking->getId()} est traitée");
-            //Rediriger 
+            // Reindirizzamento alla pagina delle prenotazioni amministrative
             return $this->redirectToRoute("admin_booking_index");
         }
 
+        // Renderizzazione della vista con il form e la prenotazione
         return $this->render('pages/admin/booking/process.html.twig', [
-            "form" => $form->createView(), 
+            "form" => $form->createView(),
             "booking" => $booking
         ]);
     }
+
 
     #[Route('/booking/{id<\d+>}/delete', name: 'admin_booking_delete', methods:['POST'])]
     public function delete(Booking $booking, Request $request): Response
