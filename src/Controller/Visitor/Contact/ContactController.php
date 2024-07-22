@@ -44,8 +44,6 @@ class ContactController extends AbstractController
             }
             
 
-
-
             $em->persist($contact);
             $em->flush();
 

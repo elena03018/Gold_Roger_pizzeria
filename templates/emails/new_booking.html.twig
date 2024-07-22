@@ -1,0 +1,9 @@
+<h1>Nouvelle réservation reçue</h1>
+<p>Une nouvelle réservation a été effectuée par {{ user.firstName }} {{ user.lastName }}.</p>
+<p>Détails de la réservation:</p>
+<ul>
+    <li>Date: {{ booking.date|date('d-m-Y') }}</li>
+    <li>Heure: {{ booking.time }}</li>
+    <li>Nombre de personnes: {{ booking.peopleNumber }}</li>
+    <li>Code de réservation: {{ booking.code }}</li>
+</ul>

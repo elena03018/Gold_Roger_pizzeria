@@ -12,16 +12,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\SendEmailService;
 
 class BookingController extends AbstractController
 {
     public function __construct(
         private BookingTimeRepository $bookingTimeRepository,
-        private EntityManagerInterface $em
+        private EntityManagerInterface $em,
+        private SendEmailService $sendEmailService
     )
     {
 
     }
+
     #[Route('/booking', name: 'visitor_booking_create', methods:['GET', 'POST'])]
     public function create(Request $request): Response
     {
@@ -61,7 +64,24 @@ class BookingController extends AbstractController
     
                 $this->em->persist($booking);
                 $this->em->flush();
+
     
+                $this->sendEmailService->send([
+                    'sender_email' => "goldrogerpizzeria@gmail.com",
+                    'sender_name' => "Gold Roger Pizzeria",
+                    'recipient_email' => "goldrogerpizzeria@gmail.com",
+                    'subject' => 'Nouvelle réservation reçue',
+                    'html_template' => 'emails/new_booking.html.twig',
+                    'context' => [
+                        'booking' => $booking,
+                        'user' => $user,
+                    ]
+                ]);
+
+
+
+
+
                 // $this->addFlash("success", "Votre demande de reservation est pris en compte, nous vous enverrons une réponse dans les prochaines par email.");
             
                 return $this->redirectToRoute("visitor_booking_create_message", [
@@ -83,3 +103,7 @@ class BookingController extends AbstractController
         ]);
     }
 }
+
+
+ 
+

@@ -55,7 +55,24 @@
                         <td>{{booking.time}}</td>
                         <td>{{booking.peopleNumber}} personnes</td>
                         <td>
-                            <a href="" class="btn btn-sm btn-dark">Lire</a>
+                            <a href="#" class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#detailsModal{{ booking.id }}">Lire</a>
+                            <!-- Modal -->
+                            <div class="modal fade" id="detailsModal{{ booking.id }}" tabindex="-1" aria-labelledby="detailsModalLabel{{ booking.id }}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="detailsModalLabel{{ booking.id }}">Détails de la réservation</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            {{ booking.purpose }} <br> {{ booking.details }}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                         
                         <td>

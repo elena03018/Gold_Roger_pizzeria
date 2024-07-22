@@ -61,7 +61,7 @@ class Booking
 
     #[Assert\Length(
         max: 1000,
-        maxMessage: 'Le temps est invalide',
+        maxMessage: 'La longueur du message dépasse la limite de 1000 caractères autorisés.',
     )]
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $details = null;

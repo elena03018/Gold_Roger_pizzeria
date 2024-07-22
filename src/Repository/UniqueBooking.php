@@ -2,9 +2,10 @@
 
 namespace App\Validator;
 
+use App\Repository\BookingTimeRepository;
+use App\Repository\ReservationRepository;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
-use App\Repository\ReservationRepository;
 
 class UniqueReservationValidator extends ConstraintValidator
 {
