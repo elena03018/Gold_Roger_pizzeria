@@ -135,6 +135,7 @@ class BookingController extends AbstractController
                 throw $this->createNotFoundException('Réservation non trouvée');
             }
 
+
             $bookingTable = $booking->getBookingTable();
 
             // Gestisci lo stato della prenotazione e invia le email
