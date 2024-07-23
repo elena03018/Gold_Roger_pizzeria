@@ -56,6 +56,8 @@
 </head>
     <body>
 
+
+        {# Se lo user si trova in welcome page, la navbar sarà in posizione assoluta quindi sovrapposta alla foto, altrimenti sarà in posizione relativa #}
         {% if app.request.pathInfo == path('visitor_welcome_index') %}
             {% set navbarPosition = "absolute" %}
         {% else %}

@@ -214,11 +214,18 @@ class BookingController extends AbstractController
     {
         if( $this->isCsrfTokenValid("delete_booking_{$booking->getId()}", $request->request->get('_csrf_token')))
         {
-            $this->addFlash("success", "La table {$booking->getId()} a été supprimé");
+            $this->addFlash("success", "La réservation {$booking->getId()} a été supprimé");
 
             $bookingTable = $booking->getBookingTable();
-            $bookingTable->setStatus(BookingTable::STATUS_IS_AVAILABLE);
+            //$bookingTable->setStatus(BookingTable::STATUS_IS_AVAILABLE);
 
+
+
+            if ($bookingTable !== null) {
+                // Solo se il tavolo esiste, aggiorniamo lo stato
+                $bookingTable->setStatus(BookingTable::STATUS_IS_AVAILABLE);
+                $this->em->persist($bookingTable); // persistere le modifiche
+            }
 
             $this->em->remove($booking);
             $this->em->flush();

@@ -29,38 +29,9 @@
         
         <h1 class="text-dark text-center mt-5 mb-4">{{categoryName}}</h1>
 
-        {# <div class="container">
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-                        {% for post in posts %}
-                            <div>
-                                <div class="d-flex justify-content-center mt-5 mb-5">
-                                    <div class="w-75 justify-content-center d-flex align-items-center">
-
-                                        <img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('visitor_post_thumb')}}" class="img-fluid rounded-circle mt-4" alt="{{ post.title }}" width="200px">
-                                        <div class="d-flex justify-content-center align-items-center flex-column">
-                                            <p class="text-dark p-2 h2 fw-bold">{{post.title}}</p>
-                                            <p class="text-dark px-5 fst-italic">{{post.ingredients}}</p>
-                                            <div class="text-dark flex-row d-flex">
-                                                <div class="pt-2 fw-bold"> prix</div>
-                                                <p class="border border-dark me-5 px-4 py-2"> {{post.price}}€</p>
-                                            </div>
-                                            <div class="text-dark flex-row d-flex mt-4">
-                                                <div class="border border-dark me-5 px-4 py-2"> large</div>
-                                                <p class="pt-2 fw-bold">29€</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr style=" color:white; width: 50%; margin-left: 25%; " >
-                            </div>
-                        {% endfor %}
-                </div>
-            </div>
-        </div> #}
         
 
-        <div class="container-fluid">
+        {# <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6 mx-auto">
                         {% for post in posts %}
@@ -81,8 +52,32 @@
                         {% endfor %}
                 </div>
             </div>
+        </div> #}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    {% for post in posts %}
+                        <div class="card mb-3 shadow">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('visitor_post_thumb') }}" class="img-fluid rounded-start" alt="{{ post.title }}">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center">{{ post.title }}</h5>
+                                        <p class="card-text text-center">{{ post.ingredients }}</p>
+                                        <p class="card-text text-center"><small class="text-body-secondary">{{ post.price }} €</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-{% endblock %}
+
+{% endblock %} 
+
 {% block footer %}
     {% if nombre < 2 %}
     <footer class="footer text-dark text-center py-2 fixed-bottom">
