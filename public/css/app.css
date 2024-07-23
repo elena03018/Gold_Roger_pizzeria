@@ -3,7 +3,7 @@
     font-family: "Poppins", sans-serif;
 }
 
-h1, h2, h3, nav *, footer *
+h1, h2, h3, nav *
 {
     font-family: "Pacifico", cursive;
 }
@@ -101,6 +101,8 @@ p.title{
 }
 
 
+
+
 /* Menu */
 
 .main-menu{
@@ -111,6 +113,26 @@ p.title{
     height: 70px;
     width: 180px;
     font-size: 18px;
+}
+
+@media (max-width: 767.98px) {
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+    .card .row {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 1200px) {
+    .responsive-card-img {
+        width: 100%;
+        height: auto;
+    }
+    .responsive-card-row {
+        flex-direction: column;
+    }
 }
 
 

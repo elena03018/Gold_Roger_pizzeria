@@ -26,6 +26,7 @@
                 </div>
             </div>
         </div>
+
         
         <h1 class="text-dark text-center mt-5 mb-4">Pizze classiques</h1>
 
@@ -60,7 +61,7 @@
         </div> #}
         
 
-        <div class="container">
+        {# <div class="container">
             <div class="row">
                 <div class="col-md-6 mx-auto">
                         {% for post in posts %}
@@ -81,16 +82,63 @@
                         {% endfor %}
                 </div>
             </div>
+        </div> #}
+        
+        {#  
+        <div class="container full-height d-flex justify-content-center align-items-center">
+            <div class="row justify-content-center w-100">
+                <div class="col-md-6 d-flex justify-content-center">
+                    <div class="d-flex justify-content-center">
+                        {% for post in posts %}
+                            <div class="card" style="width: 18rem;">
+                                <img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('visitor_post_thumb')}}" class="img-fluid rounded-start" alt="{{ post.title }}">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center">{{post.title}}</h5>
+                                        <p class="card-text text-center">{{post.ingredients}}</p>
+                                        <p class="card-text text-center"><small class="text-body-secondary">{{post.price}} €</small></p>
+                                    </div>
+                            </div> 
+                        {% endfor %}
+                    </div>
+                </div>   
+            </div>
         </div>
-        <h1 class="text-dark text-center mt-5 mb-5">Pizze gourmet</h1>
+        #}
+
+
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 mx-auto">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    {% for post in posts %}
+                        <div class="card mb-3 shadow">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('visitor_post_thumb') }}" class="img-fluid rounded-start" alt="{{ post.title }}">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center">{{ post.title }}</h5>
+                                        <p class="card-text text-center">{{ post.ingredients }}</p>
+                                        <p class="card-text text-center"><small class="text-body-secondary">{{ post.price }} €</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <h1 class="text-dark text-center mt-5 mb-5">Pizze gourmet</h1>
+        
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
                         {% for post in pizzeGourmet %}
-                            <div class="card mb-3 shadow">
-                                <div class="row g-0">
+                            <div class="card mb-3 shadow responsive-card">
+                                <div class="row g-0 responsive-card-row">
                                     <div class="col-md-4">
-                                        <img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('visitor_post_thumb')}}" class="img-fluid rounded-start" alt="{{ post.title }}">
+                                        <img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('visitor_post_thumb')}}" class="img-fluid rounded-start responsive-card-img" alt="{{ post.title }}">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
