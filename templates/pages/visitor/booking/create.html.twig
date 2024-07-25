@@ -1,9 +1,9 @@
-{% extends 'themes/base_visitor.html.twig' %}
+{# {% extends 'themes/base_visitor.html.twig' %}
 
 {% block title %}La réservation{% endblock %}
 
-{% block description %}La réservation{% endblock %}
-
+{% block description %}La réservation{% endblock %} #}
+{# 
 {% block main %}
     <main>
         <h1 class="text-center my-3 display-5">Réserver une table</h1>
@@ -57,15 +57,16 @@
 
         
     </main>
-{% endblock %}
-{% block footer %}
+{% endblock %} #}
+
+{# {% block footer %}
             
         <footer class="footer text-dark text-center py-2 fixed-bottom">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6"> #}
                     {# Mentions légales #}
-                        <p class="cursor-pointer"><a href="" class="text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-copyright"></i>Gold Roger Pizzeria - Mentions légales</a></p>
+                        {# <p class="cursor-pointer"><a href="" class="text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-copyright"></i>Gold Roger Pizzeria - Mentions légales</a></p>
                                 <!-- Modal -->
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -135,9 +136,9 @@
                                     </div>
                                 </div>
                                 </div>
-                    </div>
+                    </div> #}
                     {# Facebook-Instagram #}
-                    <div class="col-md-6">
+                    {# <div class="col-md-6">
                         <a class="text-dark" target="_blank" href="{{settingService.setting.instagram}}">
                             <i class="icon-soc fa-brands fa-instagram"></i>
                         </a>
@@ -148,4 +149,143 @@
                 </div>
             </div>
         </footer>
+{% endblock %} #}
+
+
+
+{% extends 'themes/base_visitor.html.twig' %}
+
+{% block title %}La réservation{% endblock %}
+
+{% block description %}La réservation{% endblock %}
+
+{% block main %}
+    <main class="d-flex flex-column min-vh-100">
+        <div class="flex-grow-1">
+            <h1 class="text-center my-3 display-5">Réserver une table</h1>
+            
+            {% include 'components/alert.html.twig' %}
+
+            {% if app.user %}
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-md-8 col-lg-5 mx-auto">
+                            {{ form_start(form) }}
+                                <div class="mb-3">
+                                    <label for="">Date <span class="text-danger">*</span></label>
+                                    <div class="text-danger">{{ form_errors(form.date) }}</div>
+                                    {{ form_widget(form.date, {'attr': {'class':'form-control'}}) }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">Heure <span class="text-danger">*</span></label>
+                                    <div class="text-danger">{{ form_errors(form.time) }}</div>
+                                    {{ form_widget(form.time, {'attr': {'class':'form-control'}}) }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">Nombre de personnes<span class="text-danger">*</span></label>
+                                    <div class="text-danger">{{ form_errors(form.peopleNumber) }}</div>
+                                    {{ form_widget(form.peopleNumber, {'attr': {'class':'form-control'}}) }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">C'est à quelle occasion?</label>
+                                    <div class="text-danger">{{ form_errors(form.purpose) }}</div>
+                                    {{ form_widget(form.purpose, {'attr': {'class':'form-control'}}) }}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">Informations complémentaires: veuillez spécifier les allergies, intolérances ou demandes particulières.</label>
+                                    <div class="text-danger">{{ form_errors(form.details) }}</div>
+                                    {{ form_widget(form.details, {'attr': {'class':'form-control'}}) }}
+                                </div>
+                                <div class="mb-3">
+                                    <input formnovalidate type="submit" class="btn btn-success w-100" value="Réserver">
+                                </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div> 
+            
+            {% else %}
+                <div class="mt-5 text-center mb-4">
+                    <a href="{{ path('visitor_authentication_login') }}" class="reservation btn btn-sm btn-outline-success">Connexion</a>
+                    <a href="{{ path('visitor_registration_register') }}" class="reservation btn btn-sm btn-success">Inscription</a>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}
+
+{% block footer %}
+{# Footer dinamico da adattare alla pagina. Utente autenticato: La variabile footer_class rimane una stringa vuota, quindi il footer non avrà la classe fixed-bottom. Utente non autenticato: La variabile footer_class viene impostata su 'fixed-bottom', quindi il footer avrà la classe fixed-bottom (presente nel foglio di stile css), rendendolo fissato in basso. #}
+    {% set footer_class = '' %}
+    {% if not app.user %}
+        {% set footer_class = 'fixed-bottom' %}
+    {% endif %}
+    <footer class="footer text-dark text-center py-2 {{ footer_class }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="cursor-pointer"><a href="" class="text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-copyright"></i>Gold Roger Pizzeria - Mentions légales</a></p>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Mentions légales</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Éditeur du site<br>
+                                    Nom de la pizzeria : Gold Roger Pizzeria<br>
+                                    Adresse : Via Camillo Benso Conte di Cavour 16/18, 09016 Iglesias, Italie<br>
+                                    Téléphone : +39 370 120 9376<br>
+                                    Adresse e-mail : goldrogerpizzeria@gmail.com<br>
+                                    Numéro SIRET : 123 456 789 00010<br>
+                                    RCS : Paris B 123 456 789<br>
+                                    Directeur de la publication : Elena Bellu<br>
+                                    </p>
+                                    <p>Hébergeur du site<br>
+                                    Nom de l'hébergeur : GRP<br>
+                                    Adresse : Via Camillo Benso Conte di Cavour 16/18, 09016 Iglesias, Italie<br>
+                                    Téléphone : +39 370 120 9376<br>
+                                    </p>
+                                    <p>Protection des données personnelles<br>
+                                    Conformément à la loi Informatique et Libertés du 6 janvier 1978 modifiée, vous disposez d'un droit d'accès, de rectification et de suppression des données personnelles vous concernant. Pour exercer ce droit, vous pouvez nous contacter à l'adresse suivante : goldrogerpizzeria@gmail.com.
+                                    </p>
+                                    <p>Propriété intellectuelle<br>
+                                    Tous les contenus présents sur ce site, incluant, de façon non limitative, les graphismes, images, textes, vidéos, animations, sons, logos, gifs et icônes ainsi que leur mise en forme sont la propriété exclusive de la société Gold Roger Pizzeria, à l'exception des marques, logos ou contenus appartenant à d'autres sociétés partenaires ou auteurs.
+                                    </p>
+                                    <p>Finalités du traitement<br>
+                                    Les données personnelles collectées sont utilisées pour :
+                                    La gestion des réservations de tables<br>
+                                    La communication avec les clients<br>
+                                    L'amélioration des services proposés<br>
+                                    La gestion des commentaires et des avis laissés par les clients<br>
+                                    </p>
+                                    <p>Conditions d'utilisation<br>
+                                    L'utilisation de ce site est soumise aux conditions générales d'utilisation détaillées dans les sections appropriées. En utilisant ce site, vous acceptez ces conditions sans réserve.
+                                    </p>
+                                    <p>Responsabilité<br>
+                                    Gold Roger Pizzeria décline toute responsabilité quant aux éventuelles interruptions du site et à ses conséquences.
+                                    </p>
+                                    <p>Contact<br>
+                                    Pour toute question, vous pouvez nous contacter par e-mail à goldrogerpizzeria@gmail.com ou par téléphone au +39 370 120 9376.
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <a class="text-dark" target="_blank" href="{{ settingService.setting.instagram }}">
+                        <i class="icon-soc fa-brands fa-instagram"></i>
+                    </a>
+                    <a class="text-dark" target="_blank" href="{{ settingService.setting.facebook }}">
+                        <i class="icon-soc fa-brands fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 {% endblock %}

@@ -47,7 +47,7 @@ class Category
     /**
      * @var Collection<int, Post>
      */
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Post::class)]
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Post::class, cascade: ['persist', 'remove'])]
     private Collection $posts;
 
     public function __construct()

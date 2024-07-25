@@ -107,14 +107,16 @@
 
 
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 d-flex flex-column align-items-center">
                     {% for post in posts %}
-                        <div class="card mb-3 shadow">
-                            <div class="row g-0">
-                                <div class="col-md-4">
+                        <div class="card mb-3 col-xs-12 col-md-10 shadow">
+                            <div class="row g-0 flex-md-row">
+                            <div class="col-md-4 ImageCenter">
+                                <div>
                                     <img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('visitor_post_thumb') }}" class="img-fluid rounded-start" alt="{{ post.title }}">
                                 </div>
+                            </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h5 class="card-title text-center">{{ post.title }}</h5>
@@ -132,14 +134,16 @@
         <h1 class="text-dark text-center mt-5 mb-5">Pizze gourmet</h1>
         
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6">
+            <div class="row">
+                <div class="col-md-12 col-lg-12 d-flex flex-column align-items-center">
                         {% for post in pizzeGourmet %}
-                            <div class="card mb-3 shadow responsive-card">
-                                <div class="row g-0 responsive-card-row">
-                                    <div class="col-md-4">
-                                        <img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('visitor_post_thumb')}}" class="img-fluid rounded-start responsive-card-img" alt="{{ post.title }}">
+                            <div class="card mb-3  col-xs-12 col-md-10 shadow">
+                                <div class="row g-0 flex-md-row">
+                                <div class="col-md-4 ImageCenter">
+                                    <div>
+                                        <img src="{{ vich_uploader_asset(post, 'imageFile') | imagine_filter('visitor_post_thumb') }}"  class="img-fluid rounded-start" alt="{{ post.title }}">
                                     </div>
+                                </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
                                             <h5 class="card-title text-center">{{post.title}}</h5>
@@ -156,49 +160,9 @@
 
 
 
-        {# <div>
-            <div class="d-flex justify-content-center mt-5 mb-5">
-                <div class="w-75 justify-content-center d-flex align-items-center">
 
-                    <img  class="rounded-circle mt-4" src="{{asset('images/visitor/menu/Quattro-formaggi.jpg')}}"  class="img-fluid" alt="Responsive image" width="200px">
-                    <div class="d-flex justify-content-center align-items-center flex-column">
-                        <p class="text-dark p-2 h2 fw-bold">Pizza Quattro Formaggi</p>
-                        <p class="text-dark px-5 fst-italic">Ingrédients:Mozzarella, Gorgonzola, Parmigiano Reggiano, Fontina</p>
-                        <div class="text-dark flex-row d-flex">
-                            <div class="border border-dark me-5 px-4 py-2"> small</div>
-                            <p class="pt-2 fw-bold">19€</p>
-                        </div>
-                        <div class="text-dark flex-row d-flex mt-4">
-                            <div class="border border-dark me-5 px-4 py-2"> large</div>
-                            <p class="pt-2 fw-bold">29€</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr style=" color:white; width: 50%; margin-left: 25%; " >
-        </div> #}
 
-        {# <div>
-            <div class="d-flex justify-content-center mt-5 mb-5">
-                <div class="w-75 justify-content-center d-flex align-items-center">
 
-                    <img  class="rounded-circle mt-4" src="{{asset('images/visitor/menu/Diavola.jpg')}}"  class="img-fluid" alt="Responsive image" width="200px">
-                    <div class="d-flex justify-content-center align-items-center flex-column">
-                        <p class="text-dark p-2 h2 fw-bold">Pizza Diavola</p>
-                        <p class="text-dark px-5 fst-italic">Ingrédients:Tomates, Mozzarella, Poivrons, Saucisson, Huile d’olive</p>
-                        <div class="text-dark flex-row d-flex">
-                            <div class="border border-dark me-5 px-4 py-2"> small</div>
-                            <p class="pt-2 fw-bold">19€</p>
-                        </div>
-                        <div class="text-dark flex-row d-flex mt-4">
-                            <div class="border border-dark me-5 px-4 py-2"> large</div>
-                            <p class="pt-2 fw-bold">29€</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr style=" color:white; width: 50%; margin-left: 25%; " >
-        </div> #}
 
         {# <div>
             <div class="d-flex justify-content-center mt-5 mb-5">
@@ -222,71 +186,6 @@
             <hr style=" color:white; width: 50%; margin-left: 25%; " >
         </div> #}
 
-        {# <div>
-            <div class="d-flex justify-content-center mt-5 mb-5">
-                <div class="w-75 justify-content-center d-flex align-items-center">
-
-                    <img  class="rounded-circle mt-4" src="{{asset('images/visitor/menu/Campagnola.jpeg')}}"  class="img-fluid" alt="Responsive image" width="200px">
-                    <div class="d-flex justify-content-center align-items-center flex-column">
-                        <p class="text-dark p-2 h2 fw-bold">Pizza Campagnola</p>
-                        <p class="text-dark px-5 fst-italic">Ingrédients:Tomates, Mozzarella, Pecorino, Saucisson, Oignons</p>
-                        <div class="text-dark flex-row d-flex">
-                            <div class="border border-dark me-5 px-4 py-2"> small</div>
-                            <p class="pt-2 fw-bold">19€</p>
-                        </div>
-                        <div class="text-dark flex-row d-flex mt-4">
-                            <div class="border border-dark me-5 px-4 py-2"> large</div>
-                            <p class="pt-2 fw-bold">29€</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr style=" color:white; width: 50%; margin-left: 25%; " >
-        </div> #}
-
-        {# <div>
-            <div class="d-flex justify-content-center mt-5 mb-5">
-                <div class="w-75 justify-content-center d-flex align-items-center">
-
-                    <img  class="rounded-circle mt-4" src="{{asset('images/visitor/menu/bufala.jpg')}}"  class="img-fluid" alt="Responsive image" width="200px">
-                    <div class="d-flex justify-content-center align-items-center flex-column">
-                        <p class="text-dark p-2 h2 fw-bold">Pizza Bufala</p>
-                        <p class="text-dark px-5 fst-italic">Ingrédients:Tomates, Mozzarella di Bufala, Huile d’olive</p>
-                        <div class="text-dark flex-row d-flex">
-                            <div class="border border-dark me-5 px-4 py-2"> small</div>
-                            <p class="pt-2 fw-bold">19€</p>
-                        </div>
-                        <div class="text-dark flex-row d-flex mt-4">
-                            <div class="border border-dark me-5 px-4 py-2"> large</div>
-                            <p class="pt-2 fw-bold">29€</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr style=" color:white; width: 50%; margin-left: 25%; " >
-        </div> #}
-
-        {# <div>
-            <div class="d-flex justify-content-center mt-5 mb-5">
-                <div class="w-75 justify-content-center d-flex align-items-center">
-
-                    <img  class="rounded-circle mt-4" src="{{asset('images/visitor/menu/Prosciutto-Funghi.jpeg')}}"  class="img-fluid" alt="Responsive image" width="200px">
-                    <div class="d-flex justify-content-center align-items-center flex-column">
-                        <p class="text-dark p-2 h2 fw-bold">Pizza Prosciutto e Funghi</p>
-                        <p class="text-dark px-5 fst-italic">Ingrédients:Tomates, Mozzarella, Parmigiano Reggiano, Aubergine, Basilic, Huile d’olive</p>
-                        <div class="text-dark flex-row d-flex">
-                            <div class="border border-dark me-5 px-4 py-2"> small</div>
-                            <p class="pt-2 fw-bold">19€</p>
-                        </div>
-                        <div class="text-dark flex-row d-flex mt-4">
-                            <div class="border border-dark me-5 px-4 py-2"> large</div>
-                            <p class="pt-2 fw-bold">29€</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr style=" color:white; width: 50%; margin-left: 25%; " >
-        </div> #}
 
     </main>
 {% endblock %}

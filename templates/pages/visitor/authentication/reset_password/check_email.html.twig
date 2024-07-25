@@ -7,8 +7,100 @@
 {% block main %}
 <main>
  <p>
-       Si un compte correspondant à votre email existe, un email vient d'être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+    Si un compte correspondant à votre email existe, un email vient d'être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.{{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
     </p>
     <p>Si vous ne recevez pas d'email, veuillez vérifier votre dossier de spam ou <a href="{{ path('visitor_authentication_forgot_password_request') }}">réessayer.</a>.</p>
 </main>
+{% endblock %}
+
+{% block footer %}
+            
+        <footer class="footer text-dark text-center py-2 fixed-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                    {# Mentions légales #}
+                        <p class="cursor-pointer"><a href="" class="text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-copyright"></i>Gold Roger Pizzeria - Mentions légales</a></p>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Mentions légales</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Éditeur du site
+                                                <p>
+                                                Nom de la pizzeria : Gold Roger Pizzeria<br>
+                                                Adresse : Via Camillo Benso Conte di Cavour 16/18, 09016 Iglesias, Italie<br>
+                                                Téléphone : +39 370 120 9376<br>
+                                                Adresse e-mail : goldrogerpizzeria@gmail.com<br>
+                                                Numéro SIRET : 123 456 789 00010<br>
+                                                RCS : Paris B 123 456 789<br>
+                                                Directeur de la publication : Elena Bellu<br>
+                                                </p>
+                                                <p>
+                                                Hébergeur du site<br>
+
+                                                Nom de l'hébergeur : GRP<br>
+                                                Adresse : Via Camillo Benso Conte di Cavour 16/18, 09016 Iglesias, Italie<br>
+                                                Téléphone : +39 370 120 9376<br>
+                                                </p>
+                                                <p>
+                                                Protection des données personnelles<br>
+
+                                                Conformément à la loi Informatique et Libertés du 6 janvier 1978 modifiée, vous disposez d'un droit d'accès, de rectification et de suppression des données personnelles vous concernant. Pour exercer ce droit, vous pouvez nous contacter à l'adresse suivante : goldrogerpizzeria@gmail.com.
+                                                </p>
+
+                                                <p>
+                                                Propriété intellectuelle<br>
+
+                                                Tous les contenus présents sur ce site, incluant, de façon non limitative, les graphismes, images, textes, vidéos, animations, sons, logos, gifs et icônes ainsi que leur mise en forme sont la propriété exclusive de la société Gold Roger Pizzeria, à l'exception des marques, logos ou contenus appartenant à d'autres sociétés partenaires ou auteurs.
+                                                </p>
+                                                <p>
+                                                Finalités du traitement<br>
+
+                                                Les données personnelles collectées sont utilisées pour :
+
+                                                La gestion des réservations de tables<br>
+                                                La communication avec les clients<br>
+                                                L'amélioration des services proposés<br>
+                                                La gestion des commentaires et des avis laissés par les clients<br>
+                                                </p>
+                                                <p>
+                                                Conditions d'utilisation<br>
+
+                                                L'utilisation de ce site est soumise aux conditions générales d'utilisation détaillées dans les sections appropriées. En utilisant ce site, vous acceptez ces conditions sans réserve.
+                                                </p>
+                                                <p>
+                                                Responsabilité<br>
+
+                                                Gold Roger Pizzeria décline toute responsabilité quant aux éventuelles interruptions du site et à ses conséquences.
+                                                </p>
+                                                <p>
+                                                Contact<br>
+
+                                                Pour toute question, vous pouvez nous contacter par e-mail à goldrogerpizzeria@gmail.com ou par téléphone au +39 370 120 9376.
+                                                </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                    </div>
+                    {# Facebook-Instagram #}
+                    <div class="col-md-6">
+                        <a class="text-dark" target="_blank" href="{{settingService.setting.instagram}}">
+                            <i class="icon-soc fa-brands fa-instagram"></i>
+                        </a>
+                        <a class="text-dark" target="_blank" href="{{settingService.setting.facebook}}">
+                            <i class="icon-soc fa-brands fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
 {% endblock %}
