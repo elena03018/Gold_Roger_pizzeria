@@ -130,37 +130,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var Collection<int, Contact>
      */
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Contact::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Contact::class, cascade: ['persist', 'remove'])]
     private Collection $contacts;
 
     /**
      * @var Collection<int, Post>
      */
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class, cascade: ['persist', 'remove'])]
     private Collection $posts;
 
     /**
      * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class, cascade: ['persist', 'remove'])]
     private Collection $comments;
 
     /**
      * @var Collection<int, BookingTime>
      */
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: BookingTime::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: BookingTime::class, cascade: ['persist', 'remove'])]
     private Collection $bookingTimes;
 
     /**
      * @var Collection<int, BookingTable>
      */
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: BookingTable::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: BookingTable::class, cascade: ['persist', 'remove'])]
     private Collection $bookingTables;
 
     /**
      * @var Collection<int, Booking>
      */
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Booking::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Booking::class, cascade: ['persist', 'remove'])]
     private Collection $bookings;
 
     public function __construct()

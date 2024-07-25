@@ -70,19 +70,21 @@ p.title{
     background-color: rgba(228, 215, 226, 0.5);
 }
 
-/* .titre{
-    color: red;
-    font-style: italic; 
-    font-size: 80px; 
-    position: relative;
+.title{
+    /* text-align: center; */
+    margin-bottom: 50px;
+}
+
+/* .presentazione{
+    font-size: 1.1em;
 } */
 
+#titolo{
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-/* @media(max-width:768px){
-    .page{
-        background-position-x: -22rem;
-    }
-} */
+
 
 /* Main- Photo de pizza-presentation */
 .pizzaPresentazione, .carousel-inner{
@@ -100,7 +102,11 @@ p.title{
     
 }
 
-
+.footer.fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
 
 
 /* Menu */
@@ -116,15 +122,12 @@ p.title{
 }
 
 @media (max-width: 767.98px) {
-    .card img {
-        width: 100%;
-        height: auto;
-    }
-    .card .row {
-        flex-direction: column;
+    .ImageCenter{
+        display: flex !important;
+        justify-content: center !important;
     }
 }
-
+/* 
 @media (max-width: 1200px) {
     .responsive-card-img {
         width: 100%;
@@ -133,7 +136,7 @@ p.title{
     .responsive-card-row {
         flex-direction: column;
     }
-}
+} */
 
 
 
@@ -142,6 +145,7 @@ p.title{
 .goldroger-visitor-header
 {
     clip-path: ellipse(42% 29% at 50% 50%);
+    background: linear-gradient(rgba(255, 215, 0, 0.5), rgba(255, 215, 0, 0));
 }
 
 
@@ -155,9 +159,5 @@ p.title{
 
 /* Avis */
 .shadow-yellow {
-    box-shadow: 0 4px 8px rgb(255, 99, 71); /* Ombra gialla con opacità */
-}
-/* Inscription page */
-.inscription{
-    background-color: rgb(245, 245, 245);
+    box-shadow: 0 4px 8px rgb(255, 99, 71); /* Ombra rosso pomodoro con opacità */
 }
